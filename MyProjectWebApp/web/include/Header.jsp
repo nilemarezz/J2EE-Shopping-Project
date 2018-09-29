@@ -26,14 +26,14 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Catagories
+          Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Comics</a>
           <a class="dropdown-item" href="#">Novel</a>
           <a class="dropdown-item" href="#">Science</a>
           <a class="dropdown-item" href="#">History</a>
-          <a class="dropdown-item" href="#">Megazine</a>
+          <a class="dropdown-item" href="#">Magazine</a>
           <a class="dropdown-item" href="#">Travels</a>
           
         </div>
@@ -56,7 +56,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#">Profile</a>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" href="Logout">Logout</a>
                             
                         </div>
                     </div>
