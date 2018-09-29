@@ -1,79 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>My Shop</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-  <link rel="shortcut icon" href="view/img/logo.png" />
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-  
-</head>
-<body background-color="white">
-        <img class="background" src="view/img/bglibary.jpg" alt="bglogin" width="100%" height="100%">
-    <div id="container" >
-            <img class="logo" src="view/img/logo.png" alt="login" width="40%" height="40%">
-            <h1><center>Register</center></h1>
-        
-            <form action ="Register" method="post">
-            <div class="form-group">
-                  <label for="exampleInputPassword1">Name</label>
-                  <input type="test" class="form-control" placeholder="Enter Your Name" name="name" required>
+
+<html>
+    <head>
+
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+    </head>
+
+    <body id="LoginForm">
+
+
+
+        <div class="login-form">
+            <div class="main-div">
+                <div class="panel">
+                    <img class="logo" src="view/img/logo.png" alt="login" width="40%" height="20%">
+                    <h2 style="margin-top: 10px">Register</h2>
+                    <p>Please enter your information</p>
                 </div>
-             <div class="form-group">
-                  <label for="exampleInputPassword1">UserName</label>
-                  <input type="test" class="form-control" placeholder="Enter Username" name="username" required>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" required>
-                  
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your information with anyone else.</small>
-                </div>
-            <p style="color: red">${message}</p>
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
-              </form>
-              
-              <a href="view/state/landing.html" class="btn btn-primary btn-lg btn-block" style="background-color: #FB2320;margin-top: 10px;">Back</a>
-              
-    </div>    
-    <style>
-    #container{
-        width: 400px;
-        padding: 50px;
-       
-        background-color: white;
-        margin-left: 500px;
-        margin-top: 0px;
-        
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        border-radius: 10px;
-        
-    }
-    
-    img.background {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
-    -webkit-filter: blur(35px); /* Safari 6.0 - 9.0 */
-    filter: blur(10px);
-}
-.logo{
-             margin-left: 90px;
-         }
-    
-    </style>
+                <form id="Login" action ="Register" method="post">
+                    <div class="form-group">
+
+
+                        <input type="text" class="form-control" id="inputEmail" placeholder="Name" name="name" required>
+
+                    </div>
+
+                    <div class="form-group">
+
+
+                        <input type="text" class="form-control" id="inputEmail" placeholder="Username" name="username" required>
+
+                    </div>
+                     <div class="form-group">
+
+
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email" required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" required>
+
+                    </div>
+                    <div class="forgot">
+                        <a href="Login.jsp">Login</a>
+                    </div>
+                    <p style="color: red">${message}</p>
+                    <button type="submit" class="btn btn-success" style="width:100%">Register</button>
+
+                </form>
+                    <a href="view/state/landing.html" class="btn btn-danger" style="width:100%">Back</a>
+                    
+            </div>
+
+        </div></div>
 
 
 </body>
+
+<style>
+
+    body#LoginForm{ background-image:url("view/img/bglibary.png"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;  }
+
+    .form-heading { color:#fff; font-size:23px;}
+    .panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
+    .panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
+    .login-form .form-control {
+        background: #f7f7f7 none repeat scroll 0 0;
+        border: 3px solid #d4d4d4;
+        border-radius: 4px;
+        font-size: 14px;
+        height: 50px;
+        line-height: 50px;
+
+    }
+    .main-div {
+        background: #ffffff none repeat scroll 0 0;
+        border:10px;
+        margin: 10px auto 30px;
+        max-width: 38%;
+        padding: 50px 70px 70px 71px;
+        border-radius: 20px;
+
+    }
+
+    .login-form .form-group {
+        margin-bottom:10px;
+    }
+    .login-form{ text-align:center;}
+    .forgot a {
+        color: #777777;
+        font-size: 14px;
+        text-decoration: underline;
+    }
+    .login-form  .btn.btn-primary  {
+        background: #f0ad4e none repeat scroll 0 0;
+        border-color: #f0ad4e;
+        color: #ffffff;
+        font-size: 14px;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        padding: 0;
+    }
+    .forgot {
+        text-align: left; margin-bottom:30px;
+    }
+    .botto-text {
+        color: #ffffff;
+        font-size: 14px;
+        margin: auto;
+    }
+    .login-form .btn.btn-primary.reset {
+        background: #ff9900 none repeat scroll 0 0;
+    }
+    .back { text-align: left; margin-top:10px;}
+    .back a {color: #444444; font-size: 13px;text-decoration: none;}
+
+</style>
 </html>
