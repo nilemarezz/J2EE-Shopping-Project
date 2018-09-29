@@ -47,4 +47,23 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
+    <div class="login" style="margin-left: 20px">
+            <c:choose>
+                <c:when test ="${sessionScope.username != null}">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Hello:&nbsp;${username.username}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="#">Logout</a>
+                            
+                        </div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <a href="Login" class="btn btn-outline-success my-2 my-sm-0" >Login</a>
+                </c:otherwise>
+            </c:choose>
+        </div>
 </nav>
