@@ -58,9 +58,10 @@ public class LoginSevlet extends HttpServlet {
                 }
             }
 
+            request.setAttribute("messagelogin", "Something Wrong,Try again!!");
         }
 
-        request.setAttribute("messagelogin", "Something Wrong,Try again!!");
+        
         getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
 
     }
