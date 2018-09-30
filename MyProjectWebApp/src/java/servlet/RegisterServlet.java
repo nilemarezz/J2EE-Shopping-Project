@@ -49,15 +49,17 @@ public class RegisterServlet extends HttpServlet {
       String email = request.getParameter("email");
       String password  = request.getParameter("password");
       password = cryptWithMD5(password);
-      Account register = new Account(username, password, name, email);
+      String address = request.getParameter("address");
+      Account register = new Account(username, password, name, email, address);
       AccountJpaController accountCtrl = new AccountJpaController(utx, emf);
       
          if(username != null && password != null && email !=null && name != null){
              
              try{
                  accountCtrl.create(register);
+                 request.setAttribute("username", register);
                  request.setAttribute("messageregister", "You successful Register,Please Login to continue!!");
-                 getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+                 getServletContext().getRequestDispatcher("/Activate.jsp").forward(request, response);
                  
                 } catch(Exception ex){
                  Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE,null,ex);

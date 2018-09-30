@@ -25,31 +25,54 @@
                     <p>Please enter your information</p>
                 </div>
                 <form id="Login" action ="Register" method="post">
-                    <div class="form-group">
+                    <table>
+                        <tr>
+                            <td>Name-Surname:</td>
+                            <td>
+                                <div class="form-group">
 
 
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Name" name="name" required>
+                                    <input type="text" class="form-control" id="inputEmail"  name="name" required  >
 
-                    </div>
-
-                    <div class="form-group">
-
-
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Username" name="username" required>
-
-                    </div>
-                     <div class="form-group">
+                                </div></td>
+                        </tr>
+                        <tr>
+                            <td>Username:</td>
+                            <td>            
+                                <div class="form-group">
 
 
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email" required>
+                                    <input type="text" class="form-control" id="inputEmail"  name="username" required>
 
-                    </div>
+                                </div></td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td><div class="form-group">
 
-                    <div class="form-group">
 
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" required>
+                                    <input type="email" class="form-control" id="inputEmail"  name="email" required>
 
-                    </div>
+                                </div></td>
+
+                        </tr>
+                        <tr>
+                            <td>Password:</td> 
+                            <td><div class="form-group">
+
+                                    <input type="password" class="form-control" id="inputPassword"  name="password" required>
+
+                                </div></td>
+                        </tr>
+                        <tr style="height:120px;">
+
+                            <td>Address:</td>
+                            <td><div class="form-group"><textarea  type="text" class="form-control"   name="address" required rows="10" style="height:120px"></textarea>
+
+                                </div></td>
+
+                        </tr>
+                    </table>
                     <div class="forgot">
                         <a href="Login.jsp">Login</a>
                     </div>
@@ -57,8 +80,8 @@
                     <button type="submit" class="btn btn-success" style="width:100%">Register</button>
 
                 </form>
-                    <a href="view/state/landing.html" class="btn btn-danger" style="width:100%">Back</a>
-                    
+                <a href="view/state/landing.html" class="btn btn-danger" style="width:100%">Back</a>
+
             </div>
 
         </div></div>
@@ -94,6 +117,7 @@
 
     .login-form .form-group {
         margin-bottom:10px;
+        width: 150%
     }
     .login-form{ text-align:center;}
     .forgot a {

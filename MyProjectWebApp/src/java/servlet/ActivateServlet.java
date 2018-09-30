@@ -7,8 +7,9 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -16,22 +17,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 import jpa.controller.AccountJpaController;
+import jpa.controller.exceptions.RollbackFailureException;
 import jpa.model.Account;
 
 /**
  *
  * @author Nile
  */
-public class LoginSevlet extends HttpServlet {
-
-    @PersistenceUnit(unitName = "WebApplication1PU")
-    EntityManagerFactory emf;
-    @Resource
-    UserTransaction utx;
-
+public class ActivateServlet extends HttpServlet {
+     @PersistenceUnit(unitName ="WebApplication1PU")
+     EntityManagerFactory emf;
+     @Resource
+     UserTransaction utx;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,40 +43,28 @@ public class LoginSevlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        HttpSession session = request.getSession();
-        
-        if (username != null && password != null) {
-            password = cryptWithMD5(password);
+        String activateKey = request.getParameter("activateKey");
+        boolean isActivate= false;
+        if(username != null && activateKey != null){
             AccountJpaController accountCtrl = new AccountJpaController(utx, emf);
             Account account = accountCtrl.findAccount(username);
-            if (account != null) {
-                if (password.equals(account.getPassword())) {
-                    if(account.getActivatedate() != null){
-                        request.getSession().setAttribute("username", account);
-                    getServletContext().getRequestDispatcher("/Main.jsp").forward(request, response);
-                    }else{
-                        request.setAttribute("messagelogin", "Your account dose not Activate yet!!");
-                         getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
-                    }
-                    
-
-                }else{
-                    request.setAttribute("messagelogin", "Password Incorrect,Try again!!");
+            if(activateKey.equals(account.getActivatekey())){
+                account.setActivatedate(new Date());
+                try{
+                    accountCtrl.edit(account);
+                    isActivate = true;
                     getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+                } catch (RollbackFailureException ex) {
+                    Logger.getLogger(ActivateServlet.class.getName()).log(Level.SEVERE, "jpa", ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(ActivateServlet.class.getName()).log(Level.SEVERE, "jpa", ex);
                 }
-                
-            }else{
-                request.setAttribute("messagelogin", "Something went wrong!!");
-                getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
             }
-
+            request.setAttribute("isActivate", isActivate);
+            getServletContext().getRequestDispatcher("Activate.jsp").forward(request, response);
             
         }
-
         
-        getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -118,22 +105,5 @@ public class LoginSevlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    public static String cryptWithMD5(String pass) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] passBytes = pass.getBytes();
-            md.reset();
-            byte[] digested = md.digest(passBytes);
-            StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < digested.length; i++) {
-                sb.append(Integer.toHexString(0xff & digested[i]));
-            }
-            return sb.toString();
-        } catch (NoSuchAlgorithmException ex) {
-            System.out.println(ex);
-        }
-        return null;
-    }
 
 }

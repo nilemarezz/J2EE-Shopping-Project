@@ -23,6 +23,7 @@
                     <img class="logo" src="view/img/logo.png" alt="login" width="40%" height="20%">
                     <h2 style="margin-top: 10px">Login</h2>
                     <p>Please enter your username and password</p>
+                    <p style="color: greenyellow">${messageregister}</p>
                 </div>
                 <form id="Login" action="Login" method="post">
 
@@ -41,6 +42,8 @@
                     <div class="forgot">
                         <a href="reset.html">Forgot password?</a>
                     </div>
+                    <p style="color: red">${messagelogin}</p>
+
                     <button type="submit" class="btn btn-success" style="width:100%">Login</button>
 
                 </form>
