@@ -23,7 +23,7 @@
                     <img class="logo" src="view/img/logo.png" alt="login" width="40%" height="20%">
                     <h2 style="margin-top: 10px">Login</h2>
                     <p>Please enter your username and password</p>
-                    <p style="color: greenyellow">${messageregister}</p>
+                    <p style="color: green">${messageactivate}</p>
                 </div>
                 <form id="Login" action="Login" method="post">
 

@@ -53,6 +53,7 @@ public class ActivateServlet extends HttpServlet {
                 try{
                     accountCtrl.edit(account);
                     isActivate = true;
+                    request.setAttribute("messageactivate", "activateSuccessfull,Please Login");
                     getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
                 } catch (RollbackFailureException ex) {
                     Logger.getLogger(ActivateServlet.class.getName()).log(Level.SEVERE, "jpa", ex);
