@@ -21,6 +21,11 @@ create table "SIT".ACCOUNT
 	ACTIVATEDATE TIMESTAMP,
 	ADDRESS VARCHAR(150)
 ) 
+
+run
+localhost   : http://localhost:8080/MyProjectWebApp/view/state/landing.html
+Kmutt-Secure: http://10.5.5.157:8080/MyProjectWebApp/view/state/landing.html
+eduroam     : http://10.5.43.91:8080/MyProjectWebApp/view/state/landing.html
 	
 
 	
