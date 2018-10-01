@@ -79,7 +79,10 @@ public class RegisterServlet extends HttpServlet {
                 String from = "pcmprojectz@gmail.com";
                 String to = request.getParameter("email");
                 String subject = "Activate Account!!";
-                String message = "Click Link to comfirm Registeration"+" http://localhost:8080/MyProjectWebApp/Activate?username="+register.getUsername()+"&activateKey="+register.getActivatekey();
+                String message = "If your run on localhost Click this link,"+" http://localhost:8080/MyProjectWebApp/Activate?username="+register.getUsername()+"&activateKey="+register.getActivatekey() + 
+                                  "\n If you run with KMUTT-Secure Click this link,"+ " http://10.5.5.157:8080/MyProjectWebApp/Activate?username="+register.getUsername()+"&activateKey="+register.getActivatekey() +
+                                    "\n If you run with eduroam Click this link,"+ " http://10.5.43.91:8080/MyProjectWebApp/Activate?username="+register.getUsername()+"&activateKey="+register.getActivatekey();
+                
                 String login = "pcmprojectz@gmail.com";
                 String password = "int303project";
 

@@ -40,7 +40,7 @@
 
                     </div>
                     <div class="forgot">
-                        <a href="reset.html">Forgot password?</a>
+                        <a href="Register.jsp">Register</a>
                     </div>
                     <p style="color: red">${messagelogin}</p>
 
