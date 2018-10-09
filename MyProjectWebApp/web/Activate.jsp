@@ -21,7 +21,7 @@
             <div class="main-div">
                 <div class="panel">
                     <img class="logo" src="view/img/logo.png" alt="login" width="40%" height="20%">
-                    <h2 style="margin-top: 30px; font-size: 15px">We have send You an Email to Comfirm Registeration,</h2><br><h2>Check your Email!!</h2>
+                    <h2 style="margin-top: 30px; font-size: 15px">We have send You an Email,</h2><br><h2>Check your Email!!</h2>
                   
                     <a href="view/state/landing.html" class="btn btn-danger" style="width:100%">Back</a>
 

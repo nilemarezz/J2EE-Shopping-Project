@@ -21,29 +21,25 @@
             <div class="main-div">
                 <div class="panel">
                     <img class="logo" src="view/img/logo.png" alt="login" width="40%" height="20%">
-                    <h2 style="margin-top: 10px">Login</h2>
-                    <p>Please enter your username and password</p>
+                    <h2 style="margin-top: 10px">Forgot Password</h2>
+                    <p>Please enter your email</p>
                     <p style="color: green">${messageactivate}</p>
                 </div>
-                <form id="Login" action="Login" method="post">
+                <form id="Login" action="Forget" method="post">
 
                     <div class="form-group">
 
 
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Username" name="username">
+                        <input type="text" class="form-control" id="inputEmail" placeholder="Email" name="to">
 
                     </div>
 
-                    <div class="form-group">
-
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
-
-                    </div>
+                    
                     <div class="forgot">
                     	<table style="width:150%">
                     		<tr>
                     			<td><a href="Register.jsp">Register</a></td>
-                    			<td><a href="Forget">Forget Password?</a></td>
+                    			<td><a href="Login.jsp">Login</a></td>
                     		</tr>
 
                     	</table>
@@ -51,7 +47,7 @@
                     </div>
                     <p style="color: red">${messagelogin}</p>
 
-                    <button type="submit" class="btn btn-success" style="width:100%">Login</button>
+                    <button type="submit" class="btn btn-success" style="width:100%">Send</button>
 
                 </form>
                 <a href="view/state/landing.html" class="btn btn-danger" style="width:100%">Back</a>
