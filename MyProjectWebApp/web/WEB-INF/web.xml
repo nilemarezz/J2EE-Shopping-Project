@@ -16,10 +16,7 @@
         <servlet-name>ActivateServlet</servlet-name>
         <servlet-class>servlet.ActivateServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ForgetServlet</servlet-name>
-        <servlet-class>servlet.ForgetServlet</servlet-class>
-    </servlet>
+    
     <servlet-mapping>
         <servlet-name>LoginSevlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -36,10 +33,7 @@
         <servlet-name>ActivateServlet</servlet-name>
         <url-pattern>/Activate</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ForgetServlet</servlet-name>
-        <url-pattern>/Forget</url-pattern>
-    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

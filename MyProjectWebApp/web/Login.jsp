@@ -40,14 +40,7 @@
 
                     </div>
                     <div class="forgot">
-                    	<table style="width:150%">
-                    		<tr>
-                    			<td><a href="Register.jsp">Register</a></td>
-                    			<td><a href="Forget">Forget Password?</a></td>
-                    		</tr>
-
-                    	</table>
-                        
+                        <a href="Register.jsp">Register</a>
                     </div>
                     <p style="color: red">${messagelogin}</p>
 
