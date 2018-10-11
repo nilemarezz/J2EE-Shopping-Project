@@ -39,16 +39,10 @@
                         <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
 
                     </div>
-                    <div class="forgot">
-                    	<table style="width:150%">
-                    		<tr>
+                   
                     			<td><a href="Register.jsp">Register</a></td>
-                    			<td><a href="Forget">Forget Password?</a></td>
-                    		</tr>
-
-                    	</table>
-                        
-                    </div>
+                    			
+                    		
                     <p style="color: red">${messagelogin}</p>
 
                     <button type="submit" class="btn btn-success" style="width:100%">Login</button>
