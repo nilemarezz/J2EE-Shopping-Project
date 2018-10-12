@@ -55,7 +55,7 @@
                             Hello:&nbsp;${username.username}
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="Profile.jsp">Profile</a>
                             <a class="dropdown-item" href="Logout">Logout</a>
                             
                         </div>
