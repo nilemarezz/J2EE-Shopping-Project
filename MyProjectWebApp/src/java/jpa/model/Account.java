@@ -37,7 +37,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Account.findByActivatekey", query = "SELECT a FROM Account a WHERE a.activatekey = :activatekey")
     , @NamedQuery(name = "Account.findByRegdate", query = "SELECT a FROM Account a WHERE a.regdate = :regdate")
     , @NamedQuery(name = "Account.findByActivatedate", query = "SELECT a FROM Account a WHERE a.activatedate = :activatedate")
-    , @NamedQuery(name = "Account.findByAddress", query = "SELECT a FROM Account a WHERE a.address = :address")})
+    , @NamedQuery(name = "Account.findByAddress", query = "SELECT a FROM Account a WHERE a.address = :address")
+    , @NamedQuery(name = "Account.findByProvice", query = "SELECT a FROM Account a WHERE a.provice = :provice")})
 public class Account implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -71,6 +72,9 @@ public class Account implements Serializable {
     @Size(max = 150)
     @Column(name = "ADDRESS")
     private String address;
+    @Size(max = 30)
+    @Column(name = "PROVICE")
+    private String provice;
 
     public Account() {
     }
@@ -79,12 +83,18 @@ public class Account implements Serializable {
         this.username = username;
     }
 
-    public Account(String username, String password,String name,String email,String address) {
+    public Account(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+     public Account(String username, String password,String name,String email,String address,String province) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
+        this.provice = province;
         this.address = address;
+       
         this.regdate = new Date();
         this.activatekey = UUID.randomUUID().toString().replace("-","").substring(0,15);
         if(this.activatekey.length()> 40){
@@ -154,6 +164,14 @@ public class Account implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getProvice() {
+        return provice;
+    }
+
+    public void setProvice(String provice) {
+        this.provice = provice;
     }
 
     @Override

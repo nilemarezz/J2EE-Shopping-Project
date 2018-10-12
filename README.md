@@ -19,8 +19,9 @@ create table "SIT".ACCOUNT
 	ACTIVATEKEY VARCHAR(40),
 	REGDATE TIMESTAMP,
 	ACTIVATEDATE TIMESTAMP,
-	ADDRESS VARCHAR(150)
-) 
+	ADDRESS VARCHAR(150),
+	PROVICE VARCHAR(30)
+)
 
 run
 localhost   : http://localhost:8080/MyProjectWebApp/view/state/landing.html

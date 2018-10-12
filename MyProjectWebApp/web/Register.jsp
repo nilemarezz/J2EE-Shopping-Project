@@ -10,6 +10,7 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <meta charset="UTF-8">
         <!------ Include the above in your HEAD tag ---------->
     </head>
 
@@ -20,11 +21,11 @@
         <div class="login-form">
             <div class="main-div">
                 <div class="panel">
-                    <img class="logo" src="view/img/logo.png" alt="login" width="40%" height="20%">
-                    <h2 style="margin-top: 10px">Register</h2>
+                    <img class="logo" src="view/img/logo.png" alt="login" width="40%" height="25%">
+                    <h2 style="margin-top: 5%;font-size: 40px">Register</h2>
                     <p>Please enter your information</p>
                 </div>
-                <form id="Login" action ="Register" method="post">
+                <form id="Login" action ="Register" method="post" style="margin-left: 10%;">
                     <table>
                         <tr>
                             <td>Name-Surname:</td>
@@ -64,23 +65,43 @@
 
                                 </div></td>
                         </tr>
-                        <tr style="height:120px;">
+                        <tr>
 
                             <td>Address:</td>
-                            <td><div class="form-group"><textarea  type="text" class="form-control"   name="address" required rows="10" style="height:120px"></textarea>
+                            <td><div class="form-group"><textarea style="height:150px;" type="text" class="form-control" name="address" required ></textarea>
 
                                 </div></td>
 
                         </tr>
+                        <tr>
+                            <td>
+                                Province: 
+                            </td>
+                            <td>
+
+                                <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" name="province">
+                                    <option selected>Choose...</option>
+                                    <option value="Bangkok">Bangkok</option>
+                                    <option value="SamutPrakran">SamutPrakran</option>
+                                    <option value="Chonburi">Chonburi</option>
+                                </select>
+
+
+
+                            </td>
+                        </tr>
+                        
+
+
                     </table>
                     <div class="forgot">
                         <a href="Login.jsp">Login</a>
                     </div>
                     <p style="color: red">${message}</p>
                     <button type="submit" class="btn btn-success" style="width:100%">Register</button>
-
+                    <a href="view/state/landing.html" class="btn btn-danger" style="width:100%;margin-top: 5%">Back</a>
                 </form>
-                <a href="view/state/landing.html" class="btn btn-danger" style="width:100%">Back</a>
+
 
             </div>
 
@@ -109,7 +130,7 @@
         background: #ffffff none repeat scroll 0 0;
         border:10px;
         margin: 10px auto 30px;
-        max-width: 38%;
+        max-width: 50%;
         padding: 50px 70px 70px 71px;
         border-radius: 20px;
 
@@ -117,7 +138,8 @@
 
     .login-form .form-group {
         margin-bottom:10px;
-        width: 150%
+        width: 120%;
+        max-width: 190%;
     }
     .login-form{ text-align:center;}
     .forgot a {

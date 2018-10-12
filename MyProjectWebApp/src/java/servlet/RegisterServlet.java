@@ -62,11 +62,13 @@ public class RegisterServlet extends HttpServlet {
         String name = request.getParameter("name");
         String username = request.getParameter("username");
         String email = request.getParameter("email");
+        String province = request.getParameter("province");
+        
         String passwordregis = request.getParameter("password");
         passwordregis = cryptWithMD5(passwordregis);
         String address = request.getParameter("address");
 
-        Account register = new Account(username, passwordregis, name, email, address);
+        Account register = new Account(username, passwordregis, name, email, address, province);
         AccountJpaController accountCtrl = new AccountJpaController(utx, emf);
 
         if (username != null && passwordregis != null && email != null && name != null) {
