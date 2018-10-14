@@ -6,7 +6,11 @@ Email:pcmprojectz@gmail.com
 pass:int303project
 
 Ref: http://zetcode.com/tutorials/jeetutorials/sendingemail/
-   : Bootstrap
+   : Bootstrap.com
+   : https://colorlib.com/wp/free-bootstrap-ecommerce-website-templates/
+   : www.w3schools.com
+   : https://bootsnipp.com/snippets/featured/login-form 
+	
 
 
 sql script:

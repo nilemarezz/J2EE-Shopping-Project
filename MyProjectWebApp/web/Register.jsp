@@ -111,7 +111,8 @@
 </body>
 
 <style>
-
+    body{font-family: 'Slabo 27px', serif;}
+    
     body#LoginForm{ background-image:url("view/img/bglibary.png"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;  }
 
     .form-heading { color:#fff; font-size:23px;}

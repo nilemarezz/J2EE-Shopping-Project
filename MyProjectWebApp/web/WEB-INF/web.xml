@@ -20,6 +20,10 @@
         <servlet-name>ForgetServlet</servlet-name>
         <servlet-class>servlet.ForgetServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangeProfileServlet</servlet-name>
+        <servlet-class>servlet.ChangeProfileServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginSevlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ForgetServlet</servlet-name>
         <url-pattern>/Forget</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeProfileServlet</servlet-name>
+        <url-pattern>/ChangeProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

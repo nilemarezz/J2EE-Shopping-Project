@@ -14,9 +14,6 @@
     </head>
 
     <body id="LoginForm">
-
-
-
         <div class="login-form">
             <div class="main-div">
                 <div class="panel">
@@ -28,35 +25,23 @@
                 <form id="Login" action="Login" method="post">
 
                     <div class="form-group">
-
-
                         <input type="text" class="form-control" id="inputEmail" placeholder="Username" name="username">
-
                     </div>
-
                     <div class="form-group">
-
                         <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
-
                     </div>
-                   
-                    			<td><a href="Register.jsp">Register</a></td>
-                    			
-                    		
+                    <td><a href="Register.jsp">Register</a></td>
                     <p style="color: red">${messagelogin}</p>
-
                     <button type="submit" class="btn btn-success" style="width:100%">Login</button>
-
                 </form>
                 <a href="view/state/landing.html" class="btn btn-danger" style="width:100%">Back</a>
             </div>
-
         </div></div>
-
-
 </body>
 
 <style>
+   
+    body{font-family: 'Slabo 27px', serif;}
 
     body#LoginForm{ background-image:url("view/img/bglogin.png"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;  }
 
