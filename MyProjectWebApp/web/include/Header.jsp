@@ -11,7 +11,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet"> 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <a href="Main.jsp" title="Back to Home"><img src="logo.png" width="50"/></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -40,7 +40,7 @@
         </div>
       </li>
      <li class="nav-item">
-        <a class="nav-link" href="#">Contact us</a>
+        <a class="nav-link" href="Contract.jsp">Contact us</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -69,7 +69,7 @@
         </div>
     <table>
         <tr>
-            <td><a href="Main.jsp" title="Pay" style="margin-left: 20px" ><img src="basket.png" width="40"/></a></td>
+            <td><a href="Main.jsp" title="Pay" style="margin-left: 20px" ><img src="pic/basket.png" width="40"/></a></td>
             <td style="padding-bottom: 10px" height="5"><h1><font size="4">3</font></h1></td>
         </tr>
     </table>
@@ -78,3 +78,19 @@
 <style>
     nav{font-family: 'Slabo 27px', serif;}
 </style>
+<style>
+        body {
+            opacity: 1;
+            transition: 1s opacity;
+        }
+        body.fade-out {
+            opacity: 0;
+            transition: none;
+        }
+
+    </style>
+    <script>document.body.className += ' fade-out';
+        $(function () {
+            $('body').removeClass('fade-out');
+        });
+    </script>

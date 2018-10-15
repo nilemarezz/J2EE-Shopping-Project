@@ -10,6 +10,7 @@ Ref: http://zetcode.com/tutorials/jeetutorials/sendingemail/
    : https://colorlib.com/wp/free-bootstrap-ecommerce-website-templates/
    : www.w3schools.com
    : https://bootsnipp.com/snippets/featured/login-form 
+   : https://templated.co/tailpiece	
 	
 
 

@@ -101,4 +101,21 @@
     .back a {color: #444444; font-size: 13px;text-decoration: none;}
 
 </style>
+<style>
+        body {
+            opacity: 1;
+            transition: 1s opacity;
+        }
+        body.fade-out {
+            opacity: 0;
+            transition: none;
+        }
+       
+    </style>
+    <script>document.body.className += ' fade-out';
+        $(function () {
+            $('body').removeClass('fade-out');
+        });
+    </script>
+
 </html>

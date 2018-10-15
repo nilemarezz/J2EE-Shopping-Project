@@ -14,11 +14,11 @@
     <body>
 
         <%@include file="include/Header.jsp" %>
-        <h1  style="margin-top:0.25%;margin-left: 49%;">Profile</h1>
+        <h1  style="margin-top:7%;margin-left: 49%;">Profile</h1>
         <form  action ="ChangeProfile" method="post" style="margin-top: 0.75%;margin-left: 40%;">
-            <img src="imgacc.png" width="100px" style="margin-left: 15%;clip-path: circle();"/>
+            <img src="pic/imgacc.png" width="100px" style="margin-left: 15%;clip-path: circle();"/>
             <table style="margin-top: 1.75%">
-              
+
                 <tr>
                     <td>Username:</td>
                     <td>
@@ -31,7 +31,10 @@
                     <td>Name-Password:</td>
                     <td>            
                         <div class="form-group">
-                            <input type="text" id="2" class="form-control" id="inputEmail" value="${username.name}" onfocus="if (this.value == 'Name') {this.value = '';}" onblur="if (this.value == '') " name="name" required style=" border: none;
+                            <input type="text" id="2" class="form-control" id="inputEmail" value="${username.name}" onfocus="if (this.value == 'Name') {
+                                        this.value = '';
+                                    }" onblur="if (this.value == '')
+                                                " name="name" required style=" border: none;
                                    border-bottom: 1.5px solid grey;">
                         </div></td>
                 </tr>
@@ -39,7 +42,10 @@
                     <td>Email:</td>
                     <td><div class="form-group">
                             <input type="email" id="3" class="form-control" id="inputEmail" value="${username.email}" name="email" required style=" border: none ;
-                                   border-bottom: 1.5px solid grey;" onfocus="if (this.value == 'Email') {this.value = '';}" onblur="if (this.value == '') ">
+                                   border-bottom: 1.5px solid grey;" onfocus="if (this.value == 'Email') {
+                                               this.value = '';
+                                           }" onblur="if (this.value == '')
+                                                       ">
                         </div></td>
                 </tr>
                 <tr >
@@ -65,9 +71,8 @@
 
             </table>
         </form>
-                           
+
     </body>
-    <style>
-    body{font-family: 'Slabo 27px', serif;}
-</style>
+
+    
 </html>
