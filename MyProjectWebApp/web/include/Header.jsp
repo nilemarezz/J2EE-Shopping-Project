@@ -12,7 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet"> 
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <a href="Main.jsp" title="Back to Home"><img src="logo.png" width="50"/></a>
+    <a href="Main.jsp" title="Back to Home"><img src="pic/logo.png" width="50"/></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -57,6 +57,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="Profile.jsp">Profile</a>
+                            <a class="dropdown-item" href="History.jsp">History</a>
                             <a class="dropdown-item" href="Logout">Logout</a>
                             
                         </div>

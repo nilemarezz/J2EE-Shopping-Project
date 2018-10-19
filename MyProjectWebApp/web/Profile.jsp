@@ -28,7 +28,7 @@
                         </div></td>
                 </tr>
                 <tr>
-                    <td>Name-Password:</td>
+                    <td>Name-Surname:</td>
                     <td>            
                         <div class="form-group">
                             <input type="text" id="2" class="form-control" id="inputEmail" value="${username.name}" onfocus="if (this.value == 'Name') {

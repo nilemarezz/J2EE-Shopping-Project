@@ -56,7 +56,7 @@
 
 
 
-    </body>
+    
 
 
     <div id="page">
@@ -70,33 +70,33 @@
                     <img src="pic/food.jpg" width="320" height="180" alt="" />
                     <div class="details">
                         <h4>Food</h4>
-                        <p>Try to cook foods by your self.  <br>  We have many kinds of food such as Western,Thai food,Deesert,France etc. </p>
+                        <p><strong>Try to cook foods by your self</strong>  <br>  We have many kinds of food books such as Western,Thai food,Dessert,France etc. </p>
                     </div>
                     <a href="#" class="button">More Details</a>
                 </div>
                 <div class="box">
-                    <img src="images/pic02.jpg" width="320" height="220" alt="" />
+                    <img src="pic/history.jpg" width="320" height="180" alt="" />
                     <div class="details">
                         <h4>Documentary</h4>
-                        <p>Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget, tempus et, tellus. Etiam neque. Vivamus consequat lorem at nisl.</p>
+                        <p><strong>Explore the old&new worlds </strong><br> Increase your Knowledge and know about the background of the place or person </p>
                     </div>
                     <a href="#" class="button">More Details</a>
                 </div>
             </div>
             <div class="boxB">
                 <div class="box">
-                    <img src="images/pic03.jpg" width="320" height="280" alt="" />
+                    <img src="pic/science.jpg" width="320" height="180" alt="" />
                     <div class="details">
                         <h4>Science</h4>
-                        <p>Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget, tempus et, tellus. Etiam neque. Vivamus consequat lorem at nisl.</p>
+                        <p><strong>Science is Experiment</strong><br>Science books such as Chemistry, Biology ,Electrical , Physic and others.</p>
                     </div>
                     <a href="#" class="button">More Details</a>
                 </div>
                 <div class="box">
-                    <img src="images/pic05.jpg" width="320" height="140" alt="" />
+                    <img src="pic/kids.jpg" width="320" height="180" alt="" />
                     <div class="details">
                         <h4>Kids</h4>
-                        <p>Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget, tempus et, tellus. Etiam neque. Vivamus consequat lorem at nisl.</p>
+                        <p><strong>Relax and Enjoy</strong><br>Be enjoy and fun with a comics or improve your Children and spend the family time together</p>
                     </div>
                     <a href="#" class="button">More Details</a>
                 </div>
@@ -104,26 +104,35 @@
             </div>
             <div class="boxC">
                 <div class="box">
-                    <img src="images/pic04.jpg" width="320" height="200" alt="" />
+                    <img src="pic/magazine.jpg" width="320" height="180" alt="" />
                     <div class="details">
                         <h4>Magezine</h4>
-                        <p>Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget, tempus et, tellus. Etiam neque. Vivamus consequat lorem at nisl.</p>
+                        <p><strong>Update News and Fashion</strong><br>A book that contains articles, stories, photographs, and advertisements. </p>
                     </div>
                     <a href="#" class="button">More Details</a>
                 </div>
                 <div class="box">
-                    <img src="images/pic06.jpg" width="320" height="200" alt="" />
+                    <img src="pic/allbooks.jpg" width="320" height="200" alt="" />
                     <div class="details">
                         <h4>All</h4>
-                        <p>Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget, tempus et, tellus. Etiam neque. Vivamus consequat lorem at nisl.</p>
+                        <p><strong>Find All Books in Website</strong><br></p>
                     </div>
-                    <a href="#" class="button">More Details</a>
+                    <a href="#" class="button" style="background-color: #B71010">More Details</a>
                 </div>
 
             </div>
         </div>
     </div>
+        </body>
     <style>
+        
+        .back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display:none;
+}
         ul.contact li a.icon-twitter:before { background: #2DAAE4; }
         ul.contact li a.icon-facebook:before { background: #39599F; }
         ul.contact li a.icon-dribbble:before { background: #C4376B;	}
@@ -142,18 +151,7 @@
             color: #FFF;
         }
 
-        .button:before
-        {
-            display: inline-block;
-            background: #FFC31F;
-            margin-right: 1em;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            border-radius: 20px;
-            text-align: center;
-            color: #272925;
-        }
+       
         .box1,
         .box2,
         .box3,
@@ -240,6 +238,7 @@
             padding: 1em 2em 1em 2em;
         }
     </style>
+   
 
 
 

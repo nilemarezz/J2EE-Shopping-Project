@@ -83,11 +83,7 @@ public class Account implements Serializable {
         this.username = username;
     }
 
-    public Account(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-     public Account(String username, String password,String name,String email,String address,String province) {
+   public Account(String username, String password,String name,String email,String address,String province) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -100,7 +96,7 @@ public class Account implements Serializable {
         if(this.activatekey.length()> 40){
             this.activatekey.substring(0, 40);
         }
-    }
+}
 
     public String getUsername() {
         return username;
