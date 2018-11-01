@@ -77,7 +77,7 @@
     <table>
         <tr>
             <td><a href="Main.jsp" title="Pay" style="margin-left: 20px" ><img src="pic/basket.png" width="40"/></a></td>
-            <td style="padding-bottom: 10px" height="5"><h1><font size="4">3</font></h1></td>
+            <td style="padding-bottom: 10px" height="5"><h1><font size="4">${cart.totalQuantity}</font></h1></td>
         </tr>
     </table>
 

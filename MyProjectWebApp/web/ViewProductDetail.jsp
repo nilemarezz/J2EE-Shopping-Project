@@ -34,9 +34,9 @@
                                             <h3 class="product-title">${product.productname}</h3>
                                                 
 						<p class="product-description">${product.productdescription}</p>
-                                                <h6 class="price" style="margin-top: 5%">Categories: <span style="color: #000">${product.productline.productline}</span></h6>
-                                                <h6 class="price">Author: <span style="color: #000">${product.productauthor}</span></h6>
-                                                <h6 class="price">Publisher: <span style="color: #000">${product.productpublisher}</span></h6>
+                                                <h6 class="price" style="margin-top: 5%"><kbd>Categories</kbd> <span style="color: #000">&nbsp ${product.productline.productline}</span></h6>
+                                                <h6 class="price"><kbd>&nbsp Author &nbsp</kbd><span style="color: #000">&nbsp ${product.productauthor}</span></h6>
+                                                <h6 class="price"><kbd>Publisher </kbd><span style="color: #000">&nbsp ${product.productpublisher}</span></h6>
                                                 
                                                 
                                                 <h4 class="price" style="margin-top: 15%">current price: <span>$ ${product.productprice}</span></h4>

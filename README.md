@@ -11,22 +11,11 @@ Ref: http://zetcode.com/tutorials/jeetutorials/sendingemail/
    : www.w3schools.com
    : https://bootsnipp.com/snippets/featured/login-form 
    : https://templated.co/tailpiece	
+   : https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=product-list-carousel-for-ecommerce-website&fbclid=IwAR3C4JajQGLlg1uBFUTqx5KxzckaX-lP5sSjixCKtsXRqYz_PYtD7q35KhA
 	
 
 
-sql script:
-create table "SIT".ACCOUNT
-(
-	USERNAME VARCHAR(30) not null primary key,
-	PASSWORD VARCHAR(40) not null,
-	NAME VARCHAR(30),
-	EMAIL VARCHAR(50),
-	ACTIVATEKEY VARCHAR(40),
-	REGDATE TIMESTAMP,
-	ACTIVATEDATE TIMESTAMP,
-	ADDRESS VARCHAR(150),
-	PROVICE VARCHAR(30)
-)
+
 
 run
 localhost   : http://localhost:8080/MyProjectWebApp/view/state/landing.html
