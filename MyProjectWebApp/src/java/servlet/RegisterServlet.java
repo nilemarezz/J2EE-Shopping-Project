@@ -67,23 +67,24 @@ public class RegisterServlet extends HttpServlet {
         String passwordregis = request.getParameter("password");
         passwordregis = cryptWithMD5(passwordregis);
         String address = request.getParameter("address");
-
-        Account register = new Account(username, passwordregis, name, email, address, province);
+        HttpSession session1 = request.getSession(false);
         AccountJpaController accountCtrl = new AccountJpaController(utx, emf);
+        
 
         if (username != null && passwordregis != null && email != null && name != null) {
+            Account account = new Account(username, passwordregis, name, email, address, province);
 
             try {
-                accountCtrl.create(register);
-                request.setAttribute("username", register);
+                accountCtrl.create(account);
+                session1.setAttribute("username", account);
                 
 
                 String from = "pcmprojectz@gmail.com";
                 String to = request.getParameter("email");
                 String subject = "Activate Account!!";
-                String message = "If your run on localhost Click this link,"+" http://localhost:8080/MyProjectWebApp/Activate?username="+register.getUsername()+"&activateKey="+register.getActivatekey() + 
-                                  "\n If you run with KMUTT-Secure Click this link,"+ " http://10.5.5.157:8080/MyProjectWebApp/Activate?username="+register.getUsername()+"&activateKey="+register.getActivatekey() +
-                                    "\n If you run with eduroam Click this link,"+ " http://10.5.43.91:8080/MyProjectWebApp/Activate?username="+register.getUsername()+"&activateKey="+register.getActivatekey();
+                String message = "If your run on localhost Click this link,"+" http://localhost:8080/MyProjectWebApp/Activate?username="+account.getUsername()+"&activateKey="+account.getActivatekey() + 
+                                  "\n If you run with KMUTT-Secure Click this link,"+ " http://10.5.5.157:8080/MyProjectWebApp/Activate?username="+account.getUsername()+"&activateKey="+account.getActivatekey() +
+                                    "\n If you run with eduroam Click this link,"+ " http://10.5.43.91:8080/MyProjectWebApp/Activate?username="+account.getUsername()+"&activateKey="+account.getActivatekey();
                 
                 String login = "pcmprojectz@gmail.com";
                 String password = "int303project";

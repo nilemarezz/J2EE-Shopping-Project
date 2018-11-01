@@ -7,8 +7,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -18,20 +17,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
-import jpa.controller.AccountJpaController;
-import jpa.model.Account;
+import jpa.controller.ProductJpaController;
+import jpa.model.Product;
+import jpa.model.Productline;
 
 /**
  *
  * @author Nile
  */
-public class LoginSevlet extends HttpServlet {
-
+public class ProductServlet extends HttpServlet {
     @PersistenceUnit(unitName = "WebApplication1PU")
     EntityManagerFactory emf;
+    
     @Resource
     UserTransaction utx;
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,41 +42,16 @@ public class LoginSevlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
+        ProductJpaController productJpaCtrl = new ProductJpaController(utx, emf);
+        String name = "Children";
         
-        if (username != null && password != null) {
-            password = cryptWithMD5(password);
-            AccountJpaController accountCtrl = new AccountJpaController(utx, emf);
-            Account account = accountCtrl.findAccount(username);
-            if (account != null) {
-                if (password.equals(account.getPassword())) {
-                    if(account.getActivatedate() != null){
-                    request.getSession().setAttribute("username", account);
-                    getServletContext().getRequestDispatcher("/Main.jsp").forward(request, response);
-                    }else{
-                        request.setAttribute("messagelogin", "Your account dose not Activate yet!!");
-                         getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
-                    }
-                    
-
-                }else{
-                    request.setAttribute("messagelogin", "Password Incorrect,Try again!!");
-                    getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
-                }
-                
-            }else{
-                request.setAttribute("messagelogin", "Something went wrong!!");
-                getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
-            }
-
-            
-        }
-
         
-        getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
-
+        List <Product> products = productJpaCtrl.findProductEntities();
+        System.out.println(products);
+        session.setAttribute("products",products);
+        
+        getServletContext().getRequestDispatcher("/Product.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -118,22 +92,5 @@ public class LoginSevlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    public static String cryptWithMD5(String pass) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] passBytes = pass.getBytes();
-            md.reset();
-            byte[] digested = md.digest(passBytes);
-            StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < digested.length; i++) {
-                sb.append(Integer.toHexString(0xff & digested[i]));
-            }
-            return sb.toString();
-        } catch (NoSuchAlgorithmException ex) {
-            System.out.println(ex);
-        }
-        return null;
-    }
 
 }
