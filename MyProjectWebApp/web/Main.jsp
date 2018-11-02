@@ -63,28 +63,28 @@
                     <div class="box margin-btm">
                         <img src="pic/food.jpg" width="320" height="180" alt="" />
                         <div class="details">
-                            <h4>Food</h4>
+                            <h4>Food and Health</h4>
                             <p><strong>Try to cook foods by your self</strong>  <br>  We have many kinds of food books such as Western,Thai food,Dessert,France etc. </p>
                         </div>
-                        <a href="Product?name=all" class="button">More Details</a>
+                        <a href="Product?name=Food and Health" class="button">More Details</a>
                     </div>
                     <div class="box">
                         <img src="pic/children.jpg" width="320" height="180" alt="" />
                         <div class="details">
-                            <h4>Kids</h4>
+                            <h4>Children and Toddler</h4>
                             <p><strong>Grown your babies</strong><br> Books can be the perfect tool for helping our children learn about their emotions.</p>
                         </div>
-                        <a href="Product?name=all" class="button">More Details</a>
+                        <a href="Product?name=Children and Toddler" class="button">More Details</a>
                     </div>
                 </div>
                 <div class="boxB">
                     <div class="box">
                         <img src="pic/science.jpg" width="320" height="180" alt="" />
                         <div class="details">
-                            <h4>Science</h4>
+                            <h4>Science and Technology</h4>
                             <p><strong>Science is Experiment</strong><br>Science books such as Chemistry, Biology ,Electrical , Physic and others.</p><br>
                         </div>
-                        <a href="Product?name=all" class="button">More Details</a>
+                        <a href="Product?name=Science and Technology" class="button">More Details</a>
                     </div>
                     <div class="box">
                         <img src="pic/education.jpg" width="320" height="180" alt="" />
@@ -92,7 +92,7 @@
                             <h4>Education</h4>
                             <p><strong>Information about subject</strong><br>Be enjoy and fun with a comics or improve your Children and spend the family time together</p>
                         </div>
-                        <a href="Product?name=all" class="button">More Details</a>
+                        <a href="Product?name=Educationl" class="button">More Details</a>
                     </div>
 
                 </div>
@@ -100,10 +100,10 @@
                     <div class="box">
                         <img src="pic/entertainment.jpg" width="320" height="180" alt="" />
                         <div class="details">
-                            <h4>Travel</h4>
+                            <h4>Entertainment and Travel</h4>
                             <p><strong>Explore the world </strong><br>Make a journey, typically of some length or abroad by reading a books</p><br>
                         </div>
-                        <a href="Product?name=all" class="button">More Details</a>
+                        <a href="Product?name=Entertainment and Travel" class="button">More Details</a>
                     </div>
                     <div class="box">
                         <img src="pic/allbooks.jpg" width="320" height="200" alt="" />
