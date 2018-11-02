@@ -141,7 +141,7 @@
                                             <div class="thumb-content">
                                                 <h4><a href="GetProduct?productCode=S01-5" style="font-size: 20px;">Wikipatterns</a></h4><br>
 
-                                                <p class="item-price"><span>$1026.00</span></p>
+                                                <p class="item-price"><span>1026.00฿</span></p>
                                                 <div class="star-rating">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -164,7 +164,7 @@
                                             <div class="thumb-content">
                                                 <h4><a href="GetProduct?productCode=S01-8" style="font-size: 20px;">How Cool Stuff Works</a></h4><br>
 
-                                                <p class="item-price"><span>$997.50</span></p>
+                                                <p class="item-price"><span>997.50฿</span></p>
                                                 <div class="star-rating">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -186,7 +186,7 @@
                                             <div class="thumb-content">
                                                 <h4><a href="GetProduct?productCode=L02-1" style="font-size: 20px;">Horridly Ever After</a></h4><br>
 
-                                                <p class="item-price"><span>$317.30</span></p>
+                                                <p class="item-price"><span>317.30฿</span></p>
                                                 <div class="star-rating">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -208,7 +208,7 @@
                                             <div class="thumb-content">
                                                 <h4><a href="GetProduct?productCode=L02-7" style="font-size: 20px;">Harry Potter and the Deathly Hallows</a></h4>
 
-                                                <p class="item-price"><span>$1187.50</span></p>
+                                                <p class="item-price"><span>1187.50฿</span></p>
                                                 <div class="star-rating">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -236,7 +236,7 @@
                                                 
                                                 <h4><a href="GetProduct?productCode=E03-2" style="font-size: 20px;">Complete TOEIC - Listening</a></h4>
 
-                                                <p class="item-price"><span>$274.55</span></p>
+                                                <p class="item-price"><span>274.55฿</span></p>
                                                 <div class="star-rating">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -257,7 +257,7 @@
                                             </div>
                                             <div class="thumb-content">
                                                 <h4><a href="GetProduct?productCode=E03-9" style="font-size: 20px;">Learning English Nursery</a></h4>
-                                                <p class="item-price"><span>$204.25</span></p>
+                                                <p class="item-price"><span>204.25฿</span></p>
                                                 <div class="star-rating">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -278,7 +278,7 @@
                                             </div>
                                             <div class="thumb-content">
                                                 <h4><a href="GetProduct?productCode=C04-2" style="font-size: 20px;">Alice in Wonder Sea</a></h4><br>
-                                                <p class="item-price"><span>$407.55</span></p>
+                                                <p class="item-price"><span>407.55฿</span></p>
                                                 <div class="star-rating">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -300,7 +300,7 @@
                                             <div class="thumb-content">
                                                 <h4><a href="GetProduct?productCode=C04-7" style="font-size: 20px;">Pairs : Twins and Other Twosomes</a></h4>
                                                
-                                                <p class="item-price"><span>$460.75</span></p>
+                                                <p class="item-price"><span>460.75฿</span></p>
                                                 <div class="star-rating">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -326,7 +326,7 @@
                                             <div class="thumb-content">
                                                 <h4><a href="GetProduct?productCode=ET05-2" style="font-size: 20px;">Thailand Small Hotels : Bangkok 2</a></h4>
                                                
-                                                <p class="item-price"><span>$845.50</span></p>
+                                                <p class="item-price"><span>845.50฿</span></p>
                                                 <div class="star-rating">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -348,7 +348,7 @@
                                             <div class="thumb-content">
                                                 <h4><a href="GetProduct?productCode=ET05-8" style="font-size: 20px;">Jazz Chant Fairy Tales</a></h4><br>
                                                 
-                                                <p class="item-price"><span>$522.50</span></p>
+                                                <p class="item-price"><span>522.50฿</span></p>
                                                 <div class="star-rating">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -369,7 +369,7 @@
                                             </div>
                                             <div class="thumb-content">
                                                 <h4><a href="GetProduct?productCode=ET05-13" style="font-size: 20px;">The Rough Guide to Laos</a></h4>
-                                                <p class="item-price"><span>$617.50</span></p>
+                                                <p class="item-price"><span>617.50฿</span></p>
                                                 <div class="star-rating">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -391,7 +391,7 @@
                                             <div class="thumb-content">
                                                 <h4><a href="GetProduct?productCode=FH06-7" style="font-size: 20px;">Healthy Meals for Babies and Toddlers</a></h4>
                                                
-                                                <p class="item-price"><span>$246.05</span></p>
+                                                <p class="item-price"><span>246.05฿</span></p>
                                                 <div class="star-rating">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
