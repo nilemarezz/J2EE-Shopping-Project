@@ -7,6 +7,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
@@ -26,11 +27,13 @@ import jpa.model.Productline;
  * @author Nile
  */
 public class ProductServlet extends HttpServlet {
+
     @PersistenceUnit(unitName = "WebApplication1PU")
     EntityManagerFactory emf;
-    
+
     @Resource
     UserTransaction utx;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,11 +46,32 @@ public class ProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
+        String category = request.getParameter("name");
         ProductJpaController productJpaCtrl = new ProductJpaController(utx, emf);
-        String name = "Children";
-        List <Product> products = productJpaCtrl.findProductEntities(); System.out.println(products);
-        session.setAttribute("products",products);
-        getServletContext().getRequestDispatcher("/Product.jsp").forward(request, response);
+        
+        if (category.equalsIgnoreCase("All")) {
+            List<Product> products = productJpaCtrl.findProductEntities();
+            session.setAttribute("products", products);
+            getServletContext().getRequestDispatcher("/Product.jsp").forward(request, response);
+            return;
+        } else {
+            
+            List<Product> products = productJpaCtrl.findProductEntities();
+            List<Product> products_add = new ArrayList<>();
+            
+            for (Product product1 : products) {
+                if(pro.getProductline().getProductline().equalsIgnoreCase(category)){
+                    products_add.add(product1);
+                    
+                }
+                session.setAttribute("products", products_add);
+            getServletContext().getRequestDispatcher("/Product.jsp").forward(request, response);
+                
+                
+            }
+
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

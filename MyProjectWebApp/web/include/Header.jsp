@@ -32,19 +32,19 @@
                 <a class="nav-link" href="Main.jsp">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="Product">All Books</a>
+                <a class="nav-link" href="Product?name=all">All Books</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Categories
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Science and Technology</a>
-                    <a class="dropdown-item" href="#">Food</a>
-                    <a class="dropdown-item" href="#">Kids</a>
-                    <a class="dropdown-item" href="#">Education</a>
-                    <a class="dropdown-item" href="#">Travel</a>
-                    <a class="dropdown-item" href="Product">All</a>
+                    <a class="dropdown-item" href="Product?name=Science and Technology">Science and Technology</a>
+                    <a class="dropdown-item" href="Product?name=all">Food</a>
+                    <a class="dropdown-item" href="Product?name=all">Kids</a>
+                    <a class="dropdown-item" href="Product?name=Education">Education</a>
+                    <a class="dropdown-item" href="Product?name=all">Travel</a>
+                    <a class="dropdown-item" href="Product?name=all">All</a>
 
                 </div>
             </li>

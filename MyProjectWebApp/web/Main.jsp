@@ -66,7 +66,7 @@
                             <h4>Food</h4>
                             <p><strong>Try to cook foods by your self</strong>  <br>  We have many kinds of food books such as Western,Thai food,Dessert,France etc. </p>
                         </div>
-                        <a href="#" class="button">More Details</a>
+                        <a href="Product?name=all" class="button">More Details</a>
                     </div>
                     <div class="box">
                         <img src="pic/children.jpg" width="320" height="180" alt="" />
@@ -74,7 +74,7 @@
                             <h4>Kids</h4>
                             <p><strong>Grown your babies</strong><br> Books can be the perfect tool for helping our children learn about their emotions.</p>
                         </div>
-                        <a href="#" class="button">More Details</a>
+                        <a href="Product?name=all" class="button">More Details</a>
                     </div>
                 </div>
                 <div class="boxB">
@@ -84,7 +84,7 @@
                             <h4>Science</h4>
                             <p><strong>Science is Experiment</strong><br>Science books such as Chemistry, Biology ,Electrical , Physic and others.</p><br>
                         </div>
-                        <a href="#" class="button">More Details</a>
+                        <a href="Product?name=all" class="button">More Details</a>
                     </div>
                     <div class="box">
                         <img src="pic/education.jpg" width="320" height="180" alt="" />
@@ -92,7 +92,7 @@
                             <h4>Education</h4>
                             <p><strong>Information about subject</strong><br>Be enjoy and fun with a comics or improve your Children and spend the family time together</p>
                         </div>
-                        <a href="#" class="button">More Details</a>
+                        <a href="Product?name=all" class="button">More Details</a>
                     </div>
 
                 </div>
@@ -103,7 +103,7 @@
                             <h4>Travel</h4>
                             <p><strong>Explore the world </strong><br>Make a journey, typically of some length or abroad by reading a books</p><br>
                         </div>
-                        <a href="#" class="button">More Details</a>
+                        <a href="Product?name=all" class="button">More Details</a>
                     </div>
                     <div class="box">
                         <img src="pic/allbooks.jpg" width="320" height="200" alt="" />
@@ -111,7 +111,7 @@
                             <h4>All</h4>
                             <p><strong>Find All Books in Website</strong><br></p><br><br>
                         </div>
-                        <a href="Product" class="button" style="background-color: #B71010">More Details</a>
+                        <a href="Product?name=all" class="button" style="background-color: #B71010">More Details</a>
                     </div>
 
                 </div>
