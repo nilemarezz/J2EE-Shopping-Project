@@ -45,12 +45,8 @@ public class ProductServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         ProductJpaController productJpaCtrl = new ProductJpaController(utx, emf);
         String name = "Children";
-        
-        
-        List <Product> products = productJpaCtrl.findProductEntities();
-        System.out.println(products);
+        List <Product> products = productJpaCtrl.findProductEntities(); System.out.println(products);
         session.setAttribute("products",products);
-        
         getServletContext().getRequestDispatcher("/Product.jsp").forward(request, response);
     }
 

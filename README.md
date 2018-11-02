@@ -12,7 +12,7 @@ Ref: http://zetcode.com/tutorials/jeetutorials/sendingemail/
    : https://bootsnipp.com/snippets/featured/login-form 
    : https://templated.co/tailpiece	
    : https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=product-list-carousel-for-ecommerce-website&fbclid=IwAR3C4JajQGLlg1uBFUTqx5KxzckaX-lP5sSjixCKtsXRqYz_PYtD7q35KhA
-	
+   : https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=product-list-carousel-for-ecommerce-website&fbclid=IwAR3LNJXBDAL7yG43zk7A_sOfNwB_QFFvKWCv1VHh34IjZWdBouAnl4yLxnw
 
 
 
