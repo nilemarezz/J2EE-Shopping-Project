@@ -40,10 +40,11 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="Product?name=Science and Technology">Science and Technology</a>
-                    <a class="dropdown-item" href="Product?name=all">Food</a>
-                    <a class="dropdown-item" href="Product?name=all">Kids</a>
+                    <a class="dropdown-item" href="Product?name=Food and Health">Food</a>
+                    <a class="dropdown-item" href="Product?name=Children and Toddler">Kids</a>
                     <a class="dropdown-item" href="Product?name=Education">Education</a>
-                    <a class="dropdown-item" href="Product?name=all">Travel</a>
+                    <a class="dropdown-item" href="Product?name=Entertainment and Travel">Travel</a>
+                    <a class="dropdown-item" href="Product?name=Literature">Literature</a>
                     <a class="dropdown-item" href="Product?name=all">All</a>
 
                 </div>
