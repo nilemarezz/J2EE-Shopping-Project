@@ -39,7 +39,7 @@
                                                 <h6 class="price"><kbd>Publisher </kbd><span style="color: #000">&nbsp ${product.productpublisher}</span></h6>
                                                 
                                                 
-                                                <h4 class="price" style="margin-top: 15%">current price: <span>$ ${product.productprice}</span></h4>
+                                                <h4 class="price" style="margin-top: 15%">current price: <span>${product.productprice} ฿</span></h4>
 						
 						
 						<div class="action">
