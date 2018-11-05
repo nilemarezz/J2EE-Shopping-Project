@@ -52,7 +52,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="Contract.jsp">Contact us</a>
             </li>
+            <form class="form-inline my-2 my-lg-0" action="Search" method="post">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
         </ul>
+        
 
     </div>
     <div class="login">
@@ -75,6 +80,7 @@
             </c:otherwise>
         </c:choose>
     </div>
+     
     <table>
         <tr>
             <td><a href="Main.jsp" title="Pay" style="margin-left: 20px" ><img src="pic/basket.png" width="40"/></a></td>

@@ -139,7 +139,7 @@
 
     .login-form .form-group {
         margin-bottom:10px;
-        width: 120%;
+        width: 200%;
         max-width: 190%;
     }
     .login-form{ text-align:center;}

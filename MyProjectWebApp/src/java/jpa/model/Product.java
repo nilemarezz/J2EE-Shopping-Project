@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")
     , @NamedQuery(name = "Product.findByProductcode", query = "SELECT p FROM Product p WHERE p.productcode = :productcode")
-    , @NamedQuery(name = "Product.findByProductname", query = "SELECT p FROM Product p WHERE p.productname = :productname")
+    , @NamedQuery(name = "Product.findByProductname", query = "SELECT p FROM Product p WHERE lower(p.productname) like :productname"  + " OR lower(p.productline.productline) like :productname")
     , @NamedQuery(name = "Product.findByProductauthor", query = "SELECT p FROM Product p WHERE p.productauthor = :productauthor")
     , @NamedQuery(name = "Product.findByProductpublisher", query = "SELECT p FROM Product p WHERE p.productpublisher = :productpublisher")
     , @NamedQuery(name = "Product.findByQuantityinstock", query = "SELECT p FROM Product p WHERE p.quantityinstock = :quantityinstock")

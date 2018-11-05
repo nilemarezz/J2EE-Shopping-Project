@@ -12,8 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-            
-        <%@include file="include/Header.jsp" %>
+
+    <%@include file="include/Header.jsp" %>
 
     <body style="background-color: #ffffff; font-family: 'Rosario', sans-serif;">
         <p style="font-size: 50px;margin-top: 8%; margin-left: 7.5%"><kbd>${message}</kbd></p>
@@ -39,7 +39,7 @@
                             </a> </td></tr>
                         </c:forEach>          
             </table>
-            
+
         </div>
 
         <div>
@@ -47,6 +47,10 @@
 
                 $(document).ready(function () {
                     $('#example').DataTable();
+                });
+
+                $('#example').dataTable({
+                    "searching": false
                 });
 
             </script>

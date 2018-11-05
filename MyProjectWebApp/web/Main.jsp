@@ -92,7 +92,7 @@
                             <h4>Education</h4>
                             <p><strong>Information about subject</strong><br>Be enjoy and fun with a comics or improve your Children and spend the family time together</p>
                         </div>
-                        <a href="Product?name=Educationl" class="button">More Details</a>
+                        <a href="Product?name=Education" class="button">More Details</a>
                     </div>
 
                 </div>

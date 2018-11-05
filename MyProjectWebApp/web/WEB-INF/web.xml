@@ -32,7 +32,14 @@
         <servlet-name>GetProductServlet</servlet-name>
         <servlet-class>servlet.GetProductServlet</servlet-class>
     </servlet>
-   
+    <servlet>
+        <servlet-name>AddItemToCartServlet</servlet-name>
+        <servlet-class>servlet.AddItemToCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>servlet.SearchServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginSevlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -65,7 +72,14 @@
         <servlet-name>GetProductServlet</servlet-name>
         <url-pattern>/GetProduct</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>AddItemToCartServlet</servlet-name>
+        <url-pattern>/AddItemToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/Search</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
