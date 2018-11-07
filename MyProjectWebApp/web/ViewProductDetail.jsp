@@ -56,8 +56,9 @@
                             <div class="container">
                                 <h4 class="price" style="margin-top: 1%">current price: <span id="price" >${product.productprice} ฿</span></h4>
                                 <div class="action">
-                                    <button class="add-to-cart btn btn-default" type="button">add to cart</button>
-                                    <a href="Main.jsp"><button class="add-to-cart btn btn-dark" type="button" style="background-color: #B71010">Back</button></a>
+                                    
+                                    <a href="AddItemToCart?productCode=${product.productcode}"><button class="add-to-cart btn btn-default" type="button">add to cart</button></a>
+                                    <a href="Product.jsp"><button class="add-to-cart btn btn-dark" type="button" style="background-color: #B71010">Back</button></a>
 
                                 </div>
                             </div>

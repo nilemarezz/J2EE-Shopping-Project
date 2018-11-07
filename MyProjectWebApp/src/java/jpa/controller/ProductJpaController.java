@@ -189,6 +189,7 @@ public class ProductJpaController implements Serializable {
             return ((Long) q.getSingleResult()).intValue();
         } finally {
             em.close();
+            
         }
     }
     

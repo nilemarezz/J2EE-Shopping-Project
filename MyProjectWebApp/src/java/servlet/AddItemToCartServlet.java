@@ -7,7 +7,6 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -19,19 +18,18 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 import jpa.controller.ProductJpaController;
 import jpa.model.Product;
+import model.ShoppingCart;
 
 /**
  *
- * @author Nile
+ * @author Student
  */
-public class SearchServlet extends HttpServlet {
-
-    @PersistenceUnit(unitName = "WebApplication1PU")
+public class AddItemToCartServlet extends HttpServlet {
+     @PersistenceUnit(unitName = "WebApplication1PU")
     EntityManagerFactory emf;
-
+    
     @Resource
-    UserTransaction utx;
-
+    UserTransaction utx;  
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,20 +41,19 @@ public class SearchServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       HttpSession session = request.getSession(true);
+        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+        if(cart == null) {
+            cart = new ShoppingCart();
+            session.setAttribute("cart",cart);
+        }
+        String productCode = request.getParameter("productCode");
         ProductJpaController productJpaCtrl = new ProductJpaController(utx, emf);
-        HttpSession session = request.getSession(false);
-        String search = request.getParameter("search");
-
-        
-            List<Product> product = productJpaCtrl.findByProductName(search);
-            
-            session.setAttribute("message", "Search:" + search);
-            session.setAttribute("products", product);
-       
-            getServletContext().getRequestDispatcher("/Product.jsp").forward(request, response);
-        
-
-        
+        Product  p = productJpaCtrl.findProduct(productCode);        
+        //Product p = ProductMockup.getProduct(productCode);
+        cart.add(p);
+//        getServletContext().getRequestDispatcher("/ProductList").forward(request, response);
+        response.sendRedirect("Product.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
