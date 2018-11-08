@@ -63,13 +63,12 @@ public class RegisterServlet extends HttpServlet {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String province = request.getParameter("province");
-        
+
         String passwordregis = request.getParameter("password");
         passwordregis = cryptWithMD5(passwordregis);
         String address = request.getParameter("address");
         HttpSession session1 = request.getSession(false);
         AccountJpaController accountCtrl = new AccountJpaController(utx, emf);
-        
 
         if (username != null && passwordregis != null && email != null && name != null) {
             Account account = new Account(username, passwordregis, name, email, address, province);
@@ -77,15 +76,14 @@ public class RegisterServlet extends HttpServlet {
             try {
                 accountCtrl.create(account);
                 session1.setAttribute("username", account);
-                
 
                 String from = "pcmprojectz@gmail.com";
                 String to = request.getParameter("email");
-                String subject = "Activate Account!!";
-                String message = "If your run on localhost Click this link,"+" http://localhost:8080/MyProjectWebApp/Activate?username="+account.getUsername()+"&activateKey="+account.getActivatekey() + 
-                                  "\n If you run with KMUTT-Secure Click this link,"+ " http://10.5.5.157:8080/MyProjectWebApp/Activate?username="+account.getUsername()+"&activateKey="+account.getActivatekey() +
-                                    "\n If you run with eduroam Click this link,"+ " http://10.5.43.91:8080/MyProjectWebApp/Activate?username="+account.getUsername()+"&activateKey="+account.getActivatekey();
-                
+                String subject = "Activate Account";
+                String message = "If your run on localhost Click this link," + " http://localhost:8080/MyProjectWebApp/Activate?username=" + account.getUsername() + "&activateKey=" + account.getActivatekey()
+                        + "\n If you run with KMUTT-Secure Click this link," + " http://10.5.5.157:8080/MyProjectWebApp/Activate?username=" + account.getUsername() + "&activateKey=" + account.getActivatekey()
+                        + "\n If you run with eduroam Click this link," + " http://10.5.43.91:8080/MyProjectWebApp/Activate?username=" + account.getUsername() + "&activateKey=" + account.getActivatekey();
+
                 String login = "pcmprojectz@gmail.com";
                 String password = "int303project";
 
@@ -103,10 +101,33 @@ public class RegisterServlet extends HttpServlet {
                     Session session = Session.getInstance(props, auth);
 
                     MimeMessage msg = new MimeMessage(session);
-                    msg.setText(message);
                     msg.setSubject(subject);
                     msg.setFrom(new InternetAddress(from));
                     msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+                    String sb = "<head>"
+                            + "</head>"
+                            + "<body>"
+                            + "<div style=\"background-color:#AFEEEE;width:50%;border-style: solid;margin-top:10px\">"
+                            + "<h1 style=\"color:#FFFFFF\">" + "<center>" + msg.getSubject() + "</center>" + "</h1>"
+                            + "<p>" + "<center>"
+                            + "Welcome to our Shop" + "<br>" + "Please Activate account First ,then you can enjoy our Shop"
+                            + "</center><br><center><p> Your Account: "+account.getUsername()+"</p></center>"
+                            +"<center><p> Email: "+account.getEmail()+"</p></center>"
+                            
+                            + "<center>"
+                            + "<a a href=\"http://localhost:8080/MyProjectWebApp/Activate?username="+account.getUsername()+"&activateKey="+account.getActivatekey()+"\">"
+                            + "<button type=\"button\" style=\"background-color: #4CAF50; /* Green */\n"
+                            + "    border: none;\n"
+                            + "    color: white;\n"
+                            + "    padding: 15px 32px;\n"
+                            + "    text-align: center;\n"
+                            + "    text-decoration: none;\n"
+                            + "    display: inline-block;\n"
+                            + "    font-size: 16px; border-radius: 12px; margin-top:20px\">Activate</button></a></center>"
+                            + "<br><br><br><br><br></div>"
+                            + "</body>";
+                    msg.setContent(sb, "text/html; charset=utf-8");
+
                     Transport.send(msg);
 
                 } catch (AuthenticationFailedException ex) {
@@ -126,9 +147,6 @@ public class RegisterServlet extends HttpServlet {
                     dispatcher = request.getRequestDispatcher(err);
                 }
 
-                
-
-                
                 getServletContext().getRequestDispatcher("/Activate.jsp").forward(request, response);
 
             } catch (Exception ex) {
