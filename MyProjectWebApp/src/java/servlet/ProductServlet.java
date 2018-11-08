@@ -48,12 +48,10 @@ public class ProductServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         String category = request.getParameter("name");
         ProductJpaController productJpaCtrl = new ProductJpaController(utx, emf);
-        Product pro;
-        
         if (category.equalsIgnoreCase("All")) {
             List<Product> products = productJpaCtrl.findProductEntities();
             session.setAttribute("products", products);
-            request.setAttribute("message", "ALL PRODUCT");
+            session.setAttribute("message", "ALL PRODUCT");
             getServletContext().getRequestDispatcher("/Product.jsp").forward(request, response);
             return;
         } else {
@@ -67,7 +65,7 @@ public class ProductServlet extends HttpServlet {
                 }
              
             }
-            request.setAttribute("message", category);
+            session.setAttribute("message", category);
              session.setAttribute("products", products_add);
              getServletContext().getRequestDispatcher("/Product.jsp").forward(request, response);
 

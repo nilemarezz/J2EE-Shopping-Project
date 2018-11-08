@@ -45,8 +45,7 @@ public class GetProductServlet extends HttpServlet {
         }else{
             ProductJpaController productJpaCtrl = new ProductJpaController(utx, emf);
             Product product = productJpaCtrl.findProduct(productCode);
-//            System.out.println("product code" + product.getProductcode());
-//            System.out.println("product description" + product.getProductdescription());
+            System.out.println(product);
             request.setAttribute("product", product);
             getServletContext().getRequestDispatcher("/ViewProductDetail.jsp").forward(request, response);
         }

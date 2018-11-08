@@ -32,12 +32,14 @@ public class ShowCartServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
+        String url = request.getParameter("url");
 
         if (session != null) {
             
+            
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             if (cart != null) {
-                session.setAttribute("message", "Cart");
+                session.setAttribute("Cart", "Cart");
                 getServletContext().getRequestDispatcher("/ShowCart.jsp").forward(request, response);
                 return ;
             }

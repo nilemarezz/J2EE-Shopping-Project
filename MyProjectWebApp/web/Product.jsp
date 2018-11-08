@@ -18,6 +18,7 @@
     <body style="background-color: #ffffff; font-family: 'Rosario', sans-serif;">
         <p style="font-size: 50px;margin-top: 8%; margin-left: 7.5%"><kbd>${message}</kbd></p>
         <div class="container" style="margin-top: 2%; margin-bottom:5%;">
+           
             <table id ="example" class="table" >
                 <thead>
                 <th class="success">Image</th>

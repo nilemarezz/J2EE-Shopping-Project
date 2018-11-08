@@ -25,11 +25,13 @@ import model.ShoppingCart;
  * @author Student
  */
 public class AddItemToCartServlet extends HttpServlet {
-     @PersistenceUnit(unitName = "WebApplication1PU")
+
+    @PersistenceUnit(unitName = "WebApplication1PU")
     EntityManagerFactory emf;
-    
+
     @Resource
-    UserTransaction utx;  
+    UserTransaction utx;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,16 +43,31 @@ public class AddItemToCartServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(true);
+        String url = request.getParameter("url");
+        if (url != null) {
+            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+            if (cart == null) {
+                cart = new ShoppingCart();
+                session.setAttribute("cart", cart);
+            }
+            String productCode = request.getParameter("productCode");
+            ProductJpaController productJpaCtrl = new ProductJpaController(utx, emf);
+            Product p = productJpaCtrl.findProduct(productCode);
+
+            cart.add(p);
+            response.sendRedirect(url);
+            return;
+        }
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-        if(cart == null) {
+        if (cart == null) {
             cart = new ShoppingCart();
-            session.setAttribute("cart",cart);
+            session.setAttribute("cart", cart);
         }
         String productCode = request.getParameter("productCode");
         ProductJpaController productJpaCtrl = new ProductJpaController(utx, emf);
-        Product  p = productJpaCtrl.findProduct(productCode);        
-        
+        Product p = productJpaCtrl.findProduct(productCode);
+
         cart.add(p);
 //        getServletContext().getRequestDispatcher("/ProductList").forward(request, response);
         response.sendRedirect("Product.jsp");
