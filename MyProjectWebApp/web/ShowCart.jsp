@@ -47,41 +47,39 @@
                                         <td ><a href="GetProduct?productCode=${line.product.productcode}" style="font-size: 20px;">${line.product.productname}</a><br>
                                             <p>${line.product.productdescription}</p> 
                                             <p>${p.productdescription}</p></td>
-                                        <td>In stock</td>
+                                        <td>${line.product.quantityinstock}</td>
 
                                         <td><input class="form-control" type="text" id="quantity" value="${line.quantity}" /></td>
                                         <td><a href="AddItemToCart?productCode=${line.product.productcode}&url=ShowCart"><button class="btn btn-sm btn-success"style="width: 107%" >+</button></a></td>
-                                        <td><button class="btn btn-sm btn-danger" style="width: 120%">-</button></td>
+                                        <td><a href="MinusItem?productCode=${line.product.productcode}&url=ShowCart&operator=minus"><button class="btn btn-sm btn-success"style="width: 120%" >-</button></a></td>
                                         <td class="text-right" id="price">฿${line.totalPrice}</td>
-                                        <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                                        <td class="text-right"><a href="Remove?productCode=${line.product.productcode}&url=ShowCart"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button></a> </td>
                                     </tr>
                                 </c:forEach>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-
-
-
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <h4 style="margin-left: 80%;color: #FF8C00">
-                    <strong>Total: </strong></td>
 
+                <div style="margin-left: 80%;width:350px;height: 250px;" >   
 
-                    ฿<c:set var="total" value="${0}"/>
-                    <c:forEach var="article" items="${cart.lineItems}">
-                        <c:set var="total" value="${total + article.totalPrice}" />
-
-                    </c:forEach>
-                    <c:out value ="${total}"/><br>
-                </h4><br>
+                    <h4 color: #FF8C00">
+                        <strong>Total: </strong>
+                        ฿<c:set var="total" value="${0}"/>
+                        <c:forEach var="article" items="${cart.lineItems}">
+                            <c:set var="total" value="${total + article.totalPrice}" />
+                        </c:forEach>
+                        <c:out value ="${total}"/><br>
+                    </h4><br>
+                    <a href="CheckStep1.jsp"><button class="btn btn-sm btn-primary"style="width: 75%;height: 20%" >Confirm</button></a> 
+                </div>
 
 
             </div>
         </div>
+
+
 
 
 

@@ -15,105 +15,44 @@
     </head>
 
     <body id="LoginForm">
-
-
-
-        <div class="login-form">
+        <%@include file="include/Header.jsp" %>
+        <div class="login-form" style="margin-top: 8%">
             <div class="main-div">
                 <div class="panel">
-                    <img class="logo" src="view/img/logo.png" alt="login" width="40%" height="25%">
-                    <h2 style="margin-top: 5%;font-size: 40px">Register</h2>
-                    <p>Please enter your information</p>
+                    <img class="logo" src="view/img/logo.png" alt="login" width="40%" height="20%">
+                    <h2 style="margin-top: 10px">Register</h2>
+                    <p>Please Insert your Information</p>
                 </div>
-                <form id="Login" action ="Register" method="post" style="margin-left: 10%;">
-                    <table>
-                        <tr>
-                            <td>Name-Surname:</td>
-                            <td>
-                                <div class="form-group">
+                <form id="Login" action="Register" method="post">
 
-
-                                    <input type="text" class="form-control" id="inputEmail"  name="name" required  >
-
-                                </div></td>
-                        </tr>
-                        <tr>
-                            <td>Username:</td>
-                            <td>            
-                                <div class="form-group">
-
-
-                                    <input type="text" class="form-control" id="inputEmail"  name="username" required>
-
-                                </div></td>
-                        </tr>
-                        <tr>
-                            <td>Email:</td>
-                            <td><div class="form-group">
-
-
-                                    <input type="email" class="form-control" id="inputEmail"  name="email" required>
-
-                                </div></td>
-
-                        </tr>
-                        <tr>
-                            <td>Password:</td> 
-                            <td><div class="form-group">
-
-                                    <input type="password" class="form-control" id="inputPassword"  name="password" required>
-
-                                </div></td>
-                        </tr>
-                        <tr>
-
-                            <td>Address:</td>
-                            <td><div class="form-group"><textarea style="height:150px;" type="text" class="form-control" name="address" required ></textarea>
-
-                                </div></td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                Province: 
-                            </td>
-                            <td>
-
-                                <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" name="province">
-                                    <option selected>Choose...</option>
-                                    <option value="Bangkok">Bangkok</option>
-                                    <option value="SamutPrakran">SamutPrakran</option>
-                                    <option value="Chonburi">Chonburi</option>
-                                </select>
-
-
-
-                            </td>
-                        </tr>
-                        
-
-
-                    </table>
-                    <div class="forgot">
-                        <a href="Login.jsp">Login</a>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputEmail" placeholder="Name-Surname" name="name">
                     </div>
-                    <p style="color: red">${message}</p>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputPassword" placeholder="Username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="inputPassword" placeholder="Email" name="email">
+                    </div>
+                    <div class="form-group"><textarea style="height:120px;" type="text"  placeholder="Address" class="form-control" name="address" required ></textarea></div>
+
+                   <a href="Login.jsp">New Member?</a>
+                    <p style="color: red">${messagelogin}</p>
                     <button type="submit" class="btn btn-success" style="width:100%">Register</button>
-                    <a href="view/state/landing.html" class="btn btn-danger" style="width:100%;margin-top: 5%">Back</a>
                 </form>
-
-
+                <a href="Main.jsp" class="btn btn-danger" style="width:100%">Back</a>
             </div>
-
-        </div></div>
-
-
+        </div>
 </body>
 
 <style>
+
     body{font-family: 'Slabo 27px', serif;}
-    
-    body#LoginForm{ background-image:url("view/img/bglibary.png"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;  }
+
+    body#LoginForm{ background-image:url("view/img/bglogin.png"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;  }
 
     .form-heading { color:#fff; font-size:23px;}
     .panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
@@ -131,7 +70,7 @@
         background: #ffffff none repeat scroll 0 0;
         border:10px;
         margin: 10px auto 30px;
-        max-width: 50%;
+        max-width: 38%;
         padding: 50px 70px 70px 71px;
         border-radius: 20px;
 
@@ -139,8 +78,6 @@
 
     .login-form .form-group {
         margin-bottom:10px;
-        width: 200%;
-        max-width: 190%;
     }
     .login-form{ text-align:center;}
     .forgot a {
@@ -148,15 +85,15 @@
         font-size: 14px;
         text-decoration: underline;
     }
-    .login-form  .btn.btn-primary  {
+    .login-form  .btn.btn-primary {
         background: #f0ad4e none repeat scroll 0 0;
         border-color: #f0ad4e;
         color: #ffffff;
         font-size: 14px;
         width: 100%;
         height: 50px;
-        line-height: 50px;
-        padding: 0;
+        
+        padding: 50;
     }
     .forgot {
         text-align: left; margin-bottom:30px;
@@ -174,19 +111,20 @@
 
 </style>
 <style>
-        body {
-            opacity: 1;
-            transition: 1s opacity;
-        }
-        body.fade-out {
-            opacity: 0;
-            transition: none;
-        }
+    body {
+        opacity: 1;
+        transition: 1s opacity;
+    }
+    body.fade-out {
+        opacity: 0;
+        transition: none;
+    }
 
-    </style>
-    <script>document.body.className += ' fade-out';
-        $(function () {
-            $('body').removeClass('fade-out');
-        });
-    </script>
+</style>
+<script>document.body.className += ' fade-out';
+    $(function () {
+        $('body').removeClass('fade-out');
+    });
+</script>
+
 </html>

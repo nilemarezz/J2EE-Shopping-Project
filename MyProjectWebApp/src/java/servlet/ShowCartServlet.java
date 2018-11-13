@@ -7,11 +7,17 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.annotation.Resource;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.transaction.UserTransaction;
+import jpa.controller.AccountJpaController;
+import jpa.model.Account;
 import model.ShoppingCart;
 
 /**
@@ -19,7 +25,10 @@ import model.ShoppingCart;
  * @author Nile
  */
 public class ShowCartServlet extends HttpServlet {
-
+@PersistenceUnit(unitName = "WebApplication1PU") //Persistence Unit is required to create this nnotation.
+    EntityManagerFactory emf; //Used in Jpacontroller.
+    @Resource
+    UserTransaction utx;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,18 +42,21 @@ public class ShowCartServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         String url = request.getParameter("url");
-
+        
         if (session != null) {
             
             
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             if (cart != null) {
+                AccountJpaController accountCtrl = new AccountJpaController(utx, emf);
                 session.setAttribute("Cart", "Cart");
                 getServletContext().getRequestDispatcher("/ShowCart.jsp").forward(request, response);
                 return ;
             }
+            getServletContext().getRequestDispatcher("/ShowCart.jsp").forward(request, response);
             
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

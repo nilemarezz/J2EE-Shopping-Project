@@ -151,7 +151,7 @@
                                                         <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
                                                     </ul>
                                                 </div>
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                                <a href="AddItemToCart?productCode=S01-5&url=/MyProjectWebApp/Main.jsp" class="btn btn-primary">Add to Cart</a>
                                             </div>						
                                         </div>
                                     </div>
@@ -174,7 +174,7 @@
                                                         <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
                                                     </ul>
                                                 </div>
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                                <a href="AddItemToCart?productCode=S01-8&url=/MyProjectWebApp/Main.jsp" class="btn btn-primary">Add to Cart</a>
                                             </div>						
                                         </div>
                                     </div>		
@@ -196,7 +196,7 @@
                                                         <li class="list-inline-item"><i class="fa fa-star-half-o"></i></li>
                                                     </ul>
                                                 </div>
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                                <a href="AddItemToCart?productCode=L02-1&url=/MyProjectWebApp/Main.jsp" class="btn btn-primary">Add to Cart</a>
                                             </div>						
                                         </div>
                                     </div>								
@@ -218,7 +218,7 @@
                                                         <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
                                                     </ul>
                                                 </div>
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                                <a href="AddItemToCart?productCode=L02-7&url=/MyProjectWebApp/Main.jsp" class="btn btn-primary">Add to Cart</a>
                                             </div>						
                                         </div>
                                     </div>
@@ -246,7 +246,7 @@
                                                         <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
                                                     </ul>
                                                 </div>
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                                <a href="AddItemToCart?productCode=E03-2&url=/MyProjectWebApp/Main.jsp" class="btn btn-primary">Add to Cart</a>
                                             </div>						
                                         </div>
                                     </div>
@@ -267,7 +267,7 @@
                                                         <li class="list-inline-item"><i class="fa fa-star-half-o"></i></li>
                                                     </ul>
                                                 </div>
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                                <a href="AddItemToCart?productCode=&url=/MyProjectWebApp/Main.jsp" class="btn btn-primary">Add to Cart</a>
                                             </div>						
                                         </div>
                                     </div>
@@ -288,7 +288,7 @@
                                                         <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
                                                     </ul>
                                                 </div>
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                                <a href="AddItemToCart?productCode=C04-2&url=/MyProjectWebApp/Main.jsp" class="btn btn-primary">Add to Cart</a>
                                             </div>						
                                         </div>
                                     </div>
@@ -310,7 +310,7 @@
                                                         <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
                                                     </ul>
                                                 </div>
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                                <a href="AddItemToCart?productCode=C04-7&url=/MyProjectWebApp/Main.jsp" class="btn btn-primary">Add to Cart</a>
                                             </div>						
                                         </div>
                                     </div>						
@@ -336,7 +336,7 @@
                                                         <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
                                                     </ul>
                                                 </div>
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                                <a href="AddItemToCart?productCode=ET05-2&url=/MyProjectWebApp/Main.jsp" class="btn btn-primary">Add to Cart</a>
                                             </div>						
                                         </div>
                                     </div>
@@ -358,7 +358,7 @@
                                                         <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
                                                     </ul>
                                                 </div>
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                                <a href="AddItemToCart?productCode=ET05-8&url=/MyProjectWebApp/Main.jsp" class="btn btn-primary">Add to Cart</a>
                                             </div>						
                                         </div>
                                     </div>
@@ -379,7 +379,7 @@
                                                         <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
                                                     </ul>
                                                 </div>
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                                <a href="AddItemToCart?productCode=ET05-13&url=/MyProjectWebApp/Main.jsp.jsp" class="btn btn-primary">Add to Cart</a>
                                             </div>						
                                         </div>
                                     </div>	
@@ -401,7 +401,7 @@
                                                         <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
                                                     </ul>
                                                 </div>
-                                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                                <a href="AddItemToCart?productCode=FH06-7&url=/MyProjectWebApp/Main.jsp.jsp" class="btn btn-primary">Add to Cart</a>
                                             </div>						
                                         </div>
                                     </div>

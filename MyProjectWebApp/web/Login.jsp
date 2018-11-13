@@ -14,7 +14,8 @@
     </head>
 
     <body id="LoginForm">
-        <div class="login-form">
+        <%@include file="include/Header.jsp" %>
+        <div class="login-form" style="margin-top: 8%">
             <div class="main-div">
                 <div class="panel">
                     <img class="logo" src="view/img/logo.png" alt="login" width="40%" height="20%">

@@ -7,6 +7,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 import jpa.controller.ProductJpaController;
+import jpa.model.Account;
 import jpa.model.Product;
 import model.ShoppingCart;
 
@@ -45,9 +47,12 @@ public class AddItemToCartServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         String url = request.getParameter("url");
+        String operator = request.getParameter("operator");
+
         if (url != null) {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             if (cart == null) {
+
                 cart = new ShoppingCart();
                 session.setAttribute("cart", cart);
             }
@@ -55,20 +60,34 @@ public class AddItemToCartServlet extends HttpServlet {
             ProductJpaController productJpaCtrl = new ProductJpaController(utx, emf);
             Product p = productJpaCtrl.findProduct(productCode);
 
+            
+            if(p.getQuantityinstock() <= cart.getTotalQuantity()){
+                response.sendRedirect("ShowCart.jsp");
+                return;
+            }
             cart.add(p);
+
             response.sendRedirect(url);
+
             return;
         }
+       
+
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
         if (cart == null) {
             cart = new ShoppingCart();
             session.setAttribute("cart", cart);
         }
+
         String productCode = request.getParameter("productCode");
         ProductJpaController productJpaCtrl = new ProductJpaController(utx, emf);
+        List<Product> products = productJpaCtrl.findProductEntities();
+        session.setAttribute("message", "All Product");
+        session.setAttribute("products", products);
         Product p = productJpaCtrl.findProduct(productCode);
 
         cart.add(p);
+
 //        getServletContext().getRequestDispatcher("/ProductList").forward(request, response);
         response.sendRedirect("Product.jsp");
     }
