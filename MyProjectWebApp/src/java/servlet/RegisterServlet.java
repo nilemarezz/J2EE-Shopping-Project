@@ -75,7 +75,7 @@ public class RegisterServlet extends HttpServlet {
 
             try {
                 accountCtrl.create(account);
-                session1.setAttribute("username", account);
+                
 
                 String from = "pcmprojectz@gmail.com";
                 String to = request.getParameter("email");

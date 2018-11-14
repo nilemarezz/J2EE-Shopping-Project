@@ -7,30 +7,16 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.annotation.Resource;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.transaction.UserTransaction;
-import jpa.controller.ProductJpaController;
-import jpa.model.Product;
-import model.ShoppingCart;
 
 /**
  *
  * @author Nile
  */
-public class MinusItemServlet extends HttpServlet {
-
-    @PersistenceUnit(unitName = "WebApplication1PU")
-    EntityManagerFactory emf;
-
-    @Resource
-    UserTransaction utx;
+public class OrderServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,21 +29,7 @@ public class MinusItemServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String operator = request.getParameter("operator");
-        String url = request.getParameter("url");
-        HttpSession session = request.getSession();
-        if (operator.equalsIgnoreCase("minus")) {
-            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-            ProductJpaController productJpaCtrl = new ProductJpaController(utx, emf);
-            String productCode = request.getParameter("productCode");
-            Product p = productJpaCtrl.findProduct(productCode);
-            System.out.println(cart.getTotalQuantity());
-            cart.minus(p);
-            System.out.println(cart.getTotalQuantity());
-            session.setAttribute("cart", cart);
-                 getServletContext().getRequestDispatcher("/"+url).forward(request, response);
-
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

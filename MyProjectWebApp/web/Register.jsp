@@ -38,8 +38,12 @@
                         <input type="email" class="form-control" id="inputPassword" placeholder="Email" name="email">
                     </div>
                     <div class="form-group"><textarea style="height:120px;" type="text"  placeholder="Address" class="form-control" name="address" required ></textarea></div>
-
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="inputPassword" placeholder="PostCode" name="province">
+                    </div>
+                    
                    <a href="Login.jsp">New Member?</a>
+                   ${message}
                     <p style="color: red">${messagelogin}</p>
                     <button type="submit" class="btn btn-success" style="width:100%">Register</button>
                 </form>
