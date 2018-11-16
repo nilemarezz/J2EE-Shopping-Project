@@ -141,7 +141,9 @@
                                         <c:set var="total" value="${total + article.totalPrice}" />
                                     </c:forEach>
                                     <c:out value ="${total}"/></strong><br></center>
-                            <center><a href="PaymentComplete.jsp"><button class="btn btn-sm btn-success"style="width: 75%;height: 20%;margin-top: 2%" >Confirm</button></a> </center>
+                            <center><a href="Order" width ="120" >
+                                <input type ="button" class="btn btn-success" value="Comfirm" width="120"/>
+                            </a></center>
                         </div></center>
                 </div>
                 <div class="clearfix"></div>

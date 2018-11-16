@@ -51,7 +51,7 @@ public class CheckoutServlet extends HttpServlet {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
             return;
         }
-        getServletContext().getRequestDispatcher("/CheckStep.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/CheckStep1.jsp").forward(request, response);
         
         
     }

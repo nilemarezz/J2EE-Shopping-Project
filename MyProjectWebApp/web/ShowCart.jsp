@@ -72,7 +72,7 @@
                         </c:forEach>
                         <c:out value ="${total}"/><br>
                     </h4><br>
-                    <a href="CheckStep1.jsp"><button class="btn btn-sm btn-primary"style="width: 75%;height: 20%" >Confirm</button></a> 
+                    <a href="Checkout"><button class="btn btn-sm btn-primary"style="width: 75%;height: 20%" >Confirm</button></a> 
                 </div>
 
 
