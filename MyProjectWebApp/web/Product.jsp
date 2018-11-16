@@ -17,8 +17,18 @@
 
     <body style="background-color: #ffffff; font-family: 'Rosario', sans-serif;">
         <p style="font-size: 50px;margin-top: 8%; margin-left: 7.5%"><kbd>${message}</kbd></p>
+        <form action="SearchPrice" method="get">
+            <table style="float: right;width: 20%;height: 2%;margin-right: 40%;padding: 20px;">
+                <tr>
+                    <td><input type="number" class="form-control" id="exampleInputPassword1" placeholder="MinPrice" name="min" required></td>
+                    <td>~</td>
+                    <td><input type="number" class="form-control" id="exampleInputPassword1" placeholder="MaxPrice" name="max" required></td>
+                    <td><input  type="submit" class="btn btn-success" value="Search"></td>
+                </tr>
+            </table>
+        </form>
         <div class="container" style="margin-top: 2%; margin-bottom:5%;">
-           
+
             <table id ="example" class="table" >
                 <thead>
                 <th class="success">Image</th>

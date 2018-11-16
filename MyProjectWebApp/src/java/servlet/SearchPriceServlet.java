@@ -7,6 +7,9 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -18,18 +21,19 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 import jpa.controller.ProductJpaController;
 import jpa.model.Product;
-import model.ShoppingCart;
 
 /**
  *
- * @author Nile
+ * @author INT303
  */
-public class RemoveServlet extends HttpServlet {
+public class SearchPriceServlet extends HttpServlet {
+
     @PersistenceUnit(unitName = "WebApplication1PU")
     EntityManagerFactory emf;
 
     @Resource
     UserTransaction utx;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,33 +45,42 @@ public class RemoveServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = request.getParameter("url");
-        HttpSession session = request.getSession();
-         
-            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-            
-            ProductJpaController productJpaCtrl = new ProductJpaController(utx, emf);
-            String productCode = request.getParameter("productCode");
-            Product p = productJpaCtrl.findProduct(productCode);
-            cart.remove(p);
-            
-            session.setAttribute("cart", cart);
-            response.sendRedirect(url);
-            return;
+        String min = request.getParameter("min");
+        String max = request.getParameter("max");
+        HttpSession session = request.getSession(false);
+        ProductJpaController productJpaCtrl = new ProductJpaController(utx, emf);
+        
+                
+
+        BigDecimal minPrice = new BigDecimal(min);
+        BigDecimal maxPrice = new BigDecimal(max);
+
+        List<Product> products = productJpaCtrl.findProductEntities();
+        List<Product> productAdd = new ArrayList<>();
+
+        
+        for (Product productSet : products) {
+            if (minPrice.compareTo(productSet.getProductprice()) == -1 && productSet.getProductprice().compareTo(maxPrice) == -1) {
+                productAdd.add(productSet);
+            }
+        }
+        session.setAttribute("products", productAdd);
+        getServletContext().getRequestDispatcher("/Product.jsp").forward(request, response);
         
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+/**
+ * Handles the HTTP <code>GET</code> method.
+ *
+ * @param request servlet request
+ * @param response servlet response
+ * @throws ServletException if a servlet-specific error occurs
+ * @throws IOException if an I/O error occurs
+ */
+@Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -81,7 +94,7 @@ public class RemoveServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -92,7 +105,7 @@ public class RemoveServlet extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 
