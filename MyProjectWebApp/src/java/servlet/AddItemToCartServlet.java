@@ -47,7 +47,7 @@ public class AddItemToCartServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         String url = request.getParameter("url");
-        String operator = request.getParameter("operator");
+        
 
         if (url != null) {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
