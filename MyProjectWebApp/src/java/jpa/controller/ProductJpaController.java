@@ -6,23 +6,26 @@
 package jpa.controller;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import jpa.model.Productline;
+import jpa.model.Orderdetail;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.transaction.UserTransaction;
+import jpa.controller.exceptions.IllegalOrphanException;
 import jpa.controller.exceptions.NonexistentEntityException;
 import jpa.controller.exceptions.PreexistingEntityException;
 import jpa.controller.exceptions.RollbackFailureException;
 import jpa.model.Product;
-import jpa.model.Productline;
 
 /**
  *
- * @author Nile
+ * @author Student
  */
 public class ProductJpaController implements Serializable {
 
@@ -38,6 +41,9 @@ public class ProductJpaController implements Serializable {
     }
 
     public void create(Product product) throws PreexistingEntityException, RollbackFailureException, Exception {
+        if (product.getOrderdetailList() == null) {
+            product.setOrderdetailList(new ArrayList<Orderdetail>());
+        }
         EntityManager em = null;
         try {
             utx.begin();
@@ -47,10 +53,25 @@ public class ProductJpaController implements Serializable {
                 productline = em.getReference(productline.getClass(), productline.getProductline());
                 product.setProductline(productline);
             }
+            List<Orderdetail> attachedOrderdetailList = new ArrayList<Orderdetail>();
+            for (Orderdetail orderdetailListOrderdetailToAttach : product.getOrderdetailList()) {
+                orderdetailListOrderdetailToAttach = em.getReference(orderdetailListOrderdetailToAttach.getClass(), orderdetailListOrderdetailToAttach.getOrderid());
+                attachedOrderdetailList.add(orderdetailListOrderdetailToAttach);
+            }
+            product.setOrderdetailList(attachedOrderdetailList);
             em.persist(product);
             if (productline != null) {
                 productline.getProductList().add(product);
                 productline = em.merge(productline);
+            }
+            for (Orderdetail orderdetailListOrderdetail : product.getOrderdetailList()) {
+                Product oldProductcodeOfOrderdetailListOrderdetail = orderdetailListOrderdetail.getProductcode();
+                orderdetailListOrderdetail.setProductcode(product);
+                orderdetailListOrderdetail = em.merge(orderdetailListOrderdetail);
+                if (oldProductcodeOfOrderdetailListOrderdetail != null) {
+                    oldProductcodeOfOrderdetailListOrderdetail.getOrderdetailList().remove(orderdetailListOrderdetail);
+                    oldProductcodeOfOrderdetailListOrderdetail = em.merge(oldProductcodeOfOrderdetailListOrderdetail);
+                }
             }
             utx.commit();
         } catch (Exception ex) {
@@ -70,7 +91,7 @@ public class ProductJpaController implements Serializable {
         }
     }
 
-    public void edit(Product product) throws NonexistentEntityException, RollbackFailureException, Exception {
+    public void edit(Product product) throws IllegalOrphanException, NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
@@ -78,10 +99,31 @@ public class ProductJpaController implements Serializable {
             Product persistentProduct = em.find(Product.class, product.getProductcode());
             Productline productlineOld = persistentProduct.getProductline();
             Productline productlineNew = product.getProductline();
+            List<Orderdetail> orderdetailListOld = persistentProduct.getOrderdetailList();
+            List<Orderdetail> orderdetailListNew = product.getOrderdetailList();
+            List<String> illegalOrphanMessages = null;
+            for (Orderdetail orderdetailListOldOrderdetail : orderdetailListOld) {
+                if (!orderdetailListNew.contains(orderdetailListOldOrderdetail)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain Orderdetail " + orderdetailListOldOrderdetail + " since its productcode field is not nullable.");
+                }
+            }
+            if (illegalOrphanMessages != null) {
+                throw new IllegalOrphanException(illegalOrphanMessages);
+            }
             if (productlineNew != null) {
                 productlineNew = em.getReference(productlineNew.getClass(), productlineNew.getProductline());
                 product.setProductline(productlineNew);
             }
+            List<Orderdetail> attachedOrderdetailListNew = new ArrayList<Orderdetail>();
+            for (Orderdetail orderdetailListNewOrderdetailToAttach : orderdetailListNew) {
+                orderdetailListNewOrderdetailToAttach = em.getReference(orderdetailListNewOrderdetailToAttach.getClass(), orderdetailListNewOrderdetailToAttach.getOrderid());
+                attachedOrderdetailListNew.add(orderdetailListNewOrderdetailToAttach);
+            }
+            orderdetailListNew = attachedOrderdetailListNew;
+            product.setOrderdetailList(orderdetailListNew);
             product = em.merge(product);
             if (productlineOld != null && !productlineOld.equals(productlineNew)) {
                 productlineOld.getProductList().remove(product);
@@ -90,6 +132,17 @@ public class ProductJpaController implements Serializable {
             if (productlineNew != null && !productlineNew.equals(productlineOld)) {
                 productlineNew.getProductList().add(product);
                 productlineNew = em.merge(productlineNew);
+            }
+            for (Orderdetail orderdetailListNewOrderdetail : orderdetailListNew) {
+                if (!orderdetailListOld.contains(orderdetailListNewOrderdetail)) {
+                    Product oldProductcodeOfOrderdetailListNewOrderdetail = orderdetailListNewOrderdetail.getProductcode();
+                    orderdetailListNewOrderdetail.setProductcode(product);
+                    orderdetailListNewOrderdetail = em.merge(orderdetailListNewOrderdetail);
+                    if (oldProductcodeOfOrderdetailListNewOrderdetail != null && !oldProductcodeOfOrderdetailListNewOrderdetail.equals(product)) {
+                        oldProductcodeOfOrderdetailListNewOrderdetail.getOrderdetailList().remove(orderdetailListNewOrderdetail);
+                        oldProductcodeOfOrderdetailListNewOrderdetail = em.merge(oldProductcodeOfOrderdetailListNewOrderdetail);
+                    }
+                }
             }
             utx.commit();
         } catch (Exception ex) {
@@ -113,7 +166,7 @@ public class ProductJpaController implements Serializable {
         }
     }
 
-    public void destroy(String id) throws NonexistentEntityException, RollbackFailureException, Exception {
+    public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
@@ -124,6 +177,17 @@ public class ProductJpaController implements Serializable {
                 product.getProductcode();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The product with id " + id + " no longer exists.", enfe);
+            }
+            List<String> illegalOrphanMessages = null;
+            List<Orderdetail> orderdetailListOrphanCheck = product.getOrderdetailList();
+            for (Orderdetail orderdetailListOrphanCheckOrderdetail : orderdetailListOrphanCheck) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This Product (" + product + ") cannot be destroyed since the Orderdetail " + orderdetailListOrphanCheckOrderdetail + " in its orderdetailList field has a non-nullable productcode field.");
+            }
+            if (illegalOrphanMessages != null) {
+                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             Productline productline = product.getProductline();
             if (productline != null) {
@@ -189,7 +253,6 @@ public class ProductJpaController implements Serializable {
             return ((Long) q.getSingleResult()).intValue();
         } finally {
             em.close();
-            
         }
     }
     

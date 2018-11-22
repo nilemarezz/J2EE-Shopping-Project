@@ -43,6 +43,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Product.findByProductprice", query = "SELECT p FROM Product p WHERE p.productprice = :productprice")})
 public class Product implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productcode")
+    private List<Orderdetail> orderdetailList;
+
    
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productcode")
@@ -192,6 +195,15 @@ public class Product implements Serializable {
     @Override
     public String toString() {
         return "jpa.model.Product[ productcode=" + productcode + " ]";
+    }
+
+    @XmlTransient
+    public List<Orderdetail> getOrderdetailList() {
+        return orderdetailList;
+    }
+
+    public void setOrderdetailList(List<Orderdetail> orderdetailList) {
+        this.orderdetailList = orderdetailList;
     }
 
     

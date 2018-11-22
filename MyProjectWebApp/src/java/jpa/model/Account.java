@@ -46,6 +46,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Account.findByProvice", query = "SELECT a FROM Account a WHERE a.provice = :provice")})
 public class Account implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
+    private List<Ordered> orderedList;
+
     
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
@@ -203,6 +206,15 @@ public class Account implements Serializable {
     @Override
     public String toString() {
         return "jpa.model.Account[ username=" + username + " ]";
+    }
+
+    @XmlTransient
+    public List<Ordered> getOrderedList() {
+        return orderedList;
+    }
+
+    public void setOrderedList(List<Ordered> orderedList) {
+        this.orderedList = orderedList;
     }
 
     
