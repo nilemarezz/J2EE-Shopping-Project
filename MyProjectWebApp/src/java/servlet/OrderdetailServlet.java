@@ -7,25 +7,27 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
+import javax.annotation.Resource;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import jpa.model.Account;
-import jpa.model.Orderdetail;
-import jpa.model.Ordered;
-import model.ShoppingCart;
+import javax.transaction.UserTransaction;
+import jpa.controller.OrderdetailJpaController;
 
 /**
  *
  * @author Student
  */
-public class OrderServlet extends HttpServlet {
+public class OrderdetailServlet extends HttpServlet {
+    @PersistenceUnit(unitName = "WebApplication1PU")
+    EntityManagerFactory emf;
 
-    
-
+    @Resource
+    UserTransaction utx;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,30 +39,15 @@ public class OrderServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        
-        if(session != null){
-             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-             Account acc = (Account) session.getAttribute("username");
-             
-             for (Object object : cart) {
-                Ordered order = new Ordered();
-                order.setOrderdate(new Date());
-                order.setOrderid(order.getOrderid()+1);
-                order.setTotalprice(cart.getTotalPrice());
-                order.setTotalquantity(cart.getTotalQuantity());
-                order.setUsername(acc);
-                
-                Orderdetail orderdetail = new Orderdetail();
-                orderdetail.setOrdered(order);
-                orderdetail.setOrderid(orderdetail.getOrderid()+1);
-                orderdetail.setProductcode(cart.);
-            }
-        }
-        session.setAttribute("message", "Order");
-        getServletContext().getRequestDispatcher("/History.jsp").forward(request, response);
-        
-     }
+       String orderdetail = request.getParameter("orderdetail");
+       HttpSession session = request.getSession();
+       OrderdetailJpaController orderdetailcontroller = new OrderdetailJpaController(utx, emf);
+       if(orderdetail != null){
+           session.setAttribute("orderdetail", orderdetailcontroller.findOrderdetailEntities());
+           getServletContext().getRequestDispatcher("/Orderdetail.jsp").forward(request, response);
+           
+       }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
