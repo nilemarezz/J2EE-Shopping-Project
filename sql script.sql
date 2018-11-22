@@ -162,3 +162,23 @@ insert  into product(productCode,productName,productLine,productDescription,prod
 ('FH06-17','Thai Fusion Cuisine','Food and Health','80 Thai recipes that combine and mix use of the internationak and local ingredients perfectly well.','Nareerat Srisawat','Amarin Cuisine',20,375.25),
 ('FH06-18','Everyday Thai','Food and Health','Simple and Delicious Recipes for Thai Cooking at Home','Ph.D. Thavithong Hongwiwat','Seangdad Publishing',20,755.25),
 ('FH06-19','No-Bake Desserts','Food and Health','Delicious Homemade Treats Made Easy, Fast and Over-free','Pantira Rattanadilok Na Phuket','Seangdad Publishing',20,332.50);
+
+
+CREATE TABLE Ordered (
+orderid int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+username varchar(30) not null,
+orderdate Date not null,
+totalPrice decimal(8,2) not null,
+totalQuantity int not null,
+PRIMARY KEY (orderid),
+CONSTRAINT username_Ordered FOREIGN KEY (username) REFERENCES Account (username) ON DELETE NO ACTION ON UPDATE NO ACTION
+); 
+
+CREATE TABLE Orderdetail (
+orderid int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+productcode varchar(15) not null,
+productquantity  int not null,
+productprice decimal(8,2) not null,
+CONSTRAINT productcode_Orderdetail FOREIGN KEY (productcode) REFERENCES Product (productcode) ON DELETE NO ACTION ON UPDATE NO ACTION,
+CONSTRAINT orderid_Orderdetail FOREIGN KEY (orderid) REFERENCES Ordered (orderid) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
