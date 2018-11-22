@@ -7,6 +7,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import jpa.model.Account;
 import jpa.model.Orderdetail;
 import jpa.model.Ordered;
+import model.LineItem;
 import model.ShoppingCart;
 
 /**
@@ -43,20 +45,25 @@ public class OrderServlet extends HttpServlet {
              ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
              Account acc = (Account) session.getAttribute("username");
              
-             for (Object object : cart) {
-                Ordered order = new Ordered();
-                order.setOrderdate(new Date());
-                order.setOrderid(order.getOrderid()+1);
-                order.setTotalprice(cart.getTotalPrice());
-                order.setTotalquantity(cart.getTotalQuantity());
-                order.setUsername(acc);
+             for (LineItem object : cart.getLineItems()) {
+                 Ordered order = new Ordered();
+                 order.setOrderdate(new Date());
+                 order.setOrderid(order.getOrderid()+1);
+                 order.setTotalprice(order.getTotalprice());
+                 order.setTotalquantity(order.getTotalquantity());
+                 order.setUsername(acc);
+                 
+                 
+                 Orderdetail orderdetail = new Orderdetail();
+                 orderdetail.setOrdered(order);
+                 orderdetail.setOrderid(orderdetail.getOrderid()+1);
+                 orderdetail.setProductcode(cart.getProduct());
                 
-                Orderdetail orderdetail = new Orderdetail();
-                orderdetail.setOrdered(order);
-                orderdetail.setOrderid(orderdetail.getOrderid()+1);
-                orderdetail.setProductcode(cart.);
+                 
+                
             }
         }
+        
         session.setAttribute("message", "Order");
         getServletContext().getRequestDispatcher("/History.jsp").forward(request, response);
         
