@@ -37,19 +37,7 @@
                             <h6 class="price" style="margin-top: 3%"><kbd>Categories</kbd> <span style="color: #000">&nbsp ${product.productline.productline}</span></h6>
                             <h6 class="price"><kbd>&nbsp Author &nbsp</kbd><span style="color: #000">&nbsp ${product.productauthor}</span></h6>
                             <h6 class="price"><kbd>Publisher </kbd><span style="color: #000">&nbsp ${product.productpublisher}</span></h6>
-                            <table style="width: 100%;margin-top: 3%" >
-                                <tr>
-                                    <td><h6 class="price"><kbd>Amount</kbd></h6> </td>
-                                    <td> <div class="form-group row">
-
-                                            <div class="col-10">
-                                                <input class="form-control" id="amount" type="number" value="1" id="example-number-input" max="${product.quantityinstock}" min="1" style="width: 50%">
-                                            </div>
-                                        </div></td>
-                                </tr>
-
-
-                            </table>
+                            
                             <p class="help-block">In stock : ${product.quantityinstock}</p>
 
 

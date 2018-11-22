@@ -6,17 +6,14 @@
 package jpa.controller;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import jpa.model.Ordered;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.transaction.UserTransaction;
-import jpa.controller.exceptions.IllegalOrphanException;
 import jpa.controller.exceptions.NonexistentEntityException;
 import jpa.controller.exceptions.PreexistingEntityException;
 import jpa.controller.exceptions.RollbackFailureException;
@@ -40,29 +37,11 @@ public class AccountJpaController implements Serializable {
     }
 
     public void create(Account account) throws PreexistingEntityException, RollbackFailureException, Exception {
-        if (account.getOrderedList() == null) {
-            account.setOrderedList(new ArrayList<Ordered>());
-        }
         EntityManager em = null;
         try {
             utx.begin();
             em = getEntityManager();
-            List<Ordered> attachedOrderedList = new ArrayList<Ordered>();
-            for (Ordered orderedListOrderedToAttach : account.getOrderedList()) {
-                orderedListOrderedToAttach = em.getReference(orderedListOrderedToAttach.getClass(), orderedListOrderedToAttach.getOrderid());
-                attachedOrderedList.add(orderedListOrderedToAttach);
-            }
-            account.setOrderedList(attachedOrderedList);
             em.persist(account);
-            for (Ordered orderedListOrdered : account.getOrderedList()) {
-                Account oldUsernameOfOrderedListOrdered = orderedListOrdered.getUsername();
-                orderedListOrdered.setUsername(account);
-                orderedListOrdered = em.merge(orderedListOrdered);
-                if (oldUsernameOfOrderedListOrdered != null) {
-                    oldUsernameOfOrderedListOrdered.getOrderedList().remove(orderedListOrdered);
-                    oldUsernameOfOrderedListOrdered = em.merge(oldUsernameOfOrderedListOrdered);
-                }
-            }
             utx.commit();
         } catch (Exception ex) {
             try {
@@ -81,45 +60,12 @@ public class AccountJpaController implements Serializable {
         }
     }
 
-    public void edit(Account account) throws IllegalOrphanException, NonexistentEntityException, RollbackFailureException, Exception {
+    public void edit(Account account) throws NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
             em = getEntityManager();
-            Account persistentAccount = em.find(Account.class, account.getUsername());
-            List<Ordered> orderedListOld = persistentAccount.getOrderedList();
-            List<Ordered> orderedListNew = account.getOrderedList();
-            List<String> illegalOrphanMessages = null;
-            for (Ordered orderedListOldOrdered : orderedListOld) {
-                if (!orderedListNew.contains(orderedListOldOrdered)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain Ordered " + orderedListOldOrdered + " since its username field is not nullable.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            List<Ordered> attachedOrderedListNew = new ArrayList<Ordered>();
-            for (Ordered orderedListNewOrderedToAttach : orderedListNew) {
-                orderedListNewOrderedToAttach = em.getReference(orderedListNewOrderedToAttach.getClass(), orderedListNewOrderedToAttach.getOrderid());
-                attachedOrderedListNew.add(orderedListNewOrderedToAttach);
-            }
-            orderedListNew = attachedOrderedListNew;
-            account.setOrderedList(orderedListNew);
             account = em.merge(account);
-            for (Ordered orderedListNewOrdered : orderedListNew) {
-                if (!orderedListOld.contains(orderedListNewOrdered)) {
-                    Account oldUsernameOfOrderedListNewOrdered = orderedListNewOrdered.getUsername();
-                    orderedListNewOrdered.setUsername(account);
-                    orderedListNewOrdered = em.merge(orderedListNewOrdered);
-                    if (oldUsernameOfOrderedListNewOrdered != null && !oldUsernameOfOrderedListNewOrdered.equals(account)) {
-                        oldUsernameOfOrderedListNewOrdered.getOrderedList().remove(orderedListNewOrdered);
-                        oldUsernameOfOrderedListNewOrdered = em.merge(oldUsernameOfOrderedListNewOrdered);
-                    }
-                }
-            }
             utx.commit();
         } catch (Exception ex) {
             try {
@@ -142,7 +88,7 @@ public class AccountJpaController implements Serializable {
         }
     }
 
-    public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException, RollbackFailureException, Exception {
+    public void destroy(String id) throws NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
@@ -153,17 +99,6 @@ public class AccountJpaController implements Serializable {
                 account.getUsername();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The account with id " + id + " no longer exists.", enfe);
-            }
-            List<String> illegalOrphanMessages = null;
-            List<Ordered> orderedListOrphanCheck = account.getOrderedList();
-            for (Ordered orderedListOrphanCheckOrdered : orderedListOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Account (" + account + ") cannot be destroyed since the Ordered " + orderedListOrphanCheckOrdered + " in its orderedList field has a non-nullable username field.");
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(account);
             utx.commit();
