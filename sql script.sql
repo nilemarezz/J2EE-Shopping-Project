@@ -117,7 +117,7 @@ insert  into product(productCode,productName,productLine,productDescription,prod
 ('C04-8','Milva and the Magic Voice','Children and Toddler','In a short epilogue, the "Magic Voice" summarizes the morale of the story in grown up words for older children, parents, teachers.','Karin-Regina Florey','PAKVAN PUBLISHING',20,185.25),
 ('C04-9','Storybook Collection','Children and Toddler','Dive into Adventure, Disney Pixar Style','Disney Press','Disney Press',20,565.25),
 ('C04-10','Jack and the Beanstalk','Children and Toddler','Thes are the original Ladybird retellings, with beautiful new pictures of the kind children like best full of richness and detail.','B.Com M.A., M.A. Vera Southgate','Ladybirds Books',20,95.00),
-('C04-11','Tale Time : Sleeping Beauty','Children and Toddler','Wonderful Collection of evergreen children�?s classic tales. The outstanding illustrations make very book an interesting and excellent read.','June Chiang','Penerbitan Pelangi Sdn. Bhd.',20,72.20),
+('C04-11','Tale Time : Sleeping Beauty','Children and Toddler','Wonderful Collection of evergreen childrenâ?s classic tales. The outstanding illustrations make very book an interesting and excellent read.','June Chiang','Penerbitan Pelangi Sdn. Bhd.',20,72.20),
 ('C04-12','Favourite Tales : The Lion and the Hare','Children and Toddler','Ladybird Favourite Tales are the timeless, treasured stories that generations of children have grown up with and loved. These easy-to-read retellings, enhanced by exciting, richly colourful illustrations, faithfully capture all the magic of the magic of the original stories.','Sampurna Chatterjee','Ladybirds Books',20,80.75),
 ('C04-13','Little Foam Friends Duck','Children and Toddler','Ladybug presents a day in the life of a little ladybug. / Duck introduces a little duck at play in the pond.','PlayBac','PlayBac Publishing',20,61.75),
 ('C04-14','Little Foam Friends Ladybug','Children and Toddler',' Ladybug presents a day in the life of a little ladybug. / Duck introduces a little duck at play in the pond.','PlayBac','PlayBac Publishing',20,61.75),
@@ -175,6 +175,7 @@ CONSTRAINT username_Ordered FOREIGN KEY (username) REFERENCES Account (username)
 ); 
 
 CREATE TABLE Orderdetail (
+orderdetailid int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) primary key,
 orderid int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
 productcode varchar(15) not null,
 productquantity  int not null,
