@@ -64,10 +64,6 @@
         <servlet-name>OrderServlet</servlet-name>
         <servlet-class>servlet.OrderServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>OrderdetailServlet</servlet-name>
-        <servlet-class>servlet.OrderdetailServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>LoginSevlet</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -131,10 +127,6 @@
     <servlet-mapping>
         <servlet-name>OrderServlet</servlet-name>
         <url-pattern>/Order</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>OrderdetailServlet</servlet-name>
-        <url-pattern>/Orderdetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

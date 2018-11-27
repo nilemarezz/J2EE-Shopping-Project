@@ -47,7 +47,9 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Account implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
-    private List<Ordered> orderedList;
+    private List<Historyorder> historyorderList;
+
+    
 
     
 
@@ -209,13 +211,15 @@ public class Account implements Serializable {
     }
 
     @XmlTransient
-    public List<Ordered> getOrderedList() {
-        return orderedList;
+    public List<Historyorder> getHistoryorderList() {
+        return historyorderList;
     }
 
-    public void setOrderedList(List<Ordered> orderedList) {
-        this.orderedList = orderedList;
+    public void setHistoryorderList(List<Historyorder> historyorderList) {
+        this.historyorderList = historyorderList;
     }
+
+    
 
     
 }

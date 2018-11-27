@@ -24,7 +24,7 @@ import jpa.model.Productline;
 
 /**
  *
- * @author Student
+ * @author Nile
  */
 public class ProductlineJpaController implements Serializable {
 

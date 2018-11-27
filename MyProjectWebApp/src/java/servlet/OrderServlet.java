@@ -7,26 +7,31 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import jpa.controller.AccountJpaController;
+import jpa.controller.HistoryorderJpaController;
+import jpa.controller.HistoryorderdetailJpaController;
+import jpa.controller.exceptions.RollbackFailureException;
 import jpa.model.Account;
-import jpa.model.Orderdetail;
-import jpa.model.Ordered;
+import jpa.model.Historyorder;
+import jpa.model.Historyorderdetail;
 import model.LineItem;
 import model.ShoppingCart;
 
 /**
  *
- * @author Student
+ * @author Nile
  */
 public class OrderServlet extends HttpServlet {
-
-    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,35 +44,68 @@ public class OrderServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+         HttpSession session = request.getSession();
+        Account accountObj = (Account) session.getAttribute("account");
+        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+
+        AccountJpaController accountJpaCtrl = new AccountJpaController(utx, emf);
+        HistoryorderJpaController historyOrderJpaCtrl = new HistoryorderJpaController(utx, emf);
+        HistoryorderdetailJpaController historyOrderDetailJpaCtrl = new HistoryorderdetailJpaController(utx, emf);
+
+        //*--- Start of order ---*
+        int orderId = historyOrderJpaCtrl.getHistoryorderCount() + 1;
+        Historyorder historyOrder = new Historyorder();
+
+        historyOrder.setUsername(accountObj);
+        historyOrder.setMethod("Debit Card");
+        historyOrder.setOrderid(orderId);
+        historyOrder.setPrice((int) cart.getTotalPrice());
+        historyOrder.setAmount(cart.getTotalQuantity());
+        historyOrder.setTimedate(new Date());
+
+        List<Historyorder> orderList = historyOrderJpaCtrl.findHistoryorderEntities();
+        List<Historyorder> orderAccount = new ArrayList<>();
+
+        List<Historyorderdetail> orderProductDetail = new ArrayList<>();
+
+        int orderDetailId = historyOrderDetailJpaCtrl.getHistoryorderdetailCount() + 1;
+        Historyorderdetail orderDetail = new Historyorderdetail();
         
-        if(session != null){
-             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-             Account acc = (Account) session.getAttribute("username");
-             
-             for (LineItem object : cart.getLineItems()) {
-                 Ordered order = new Ordered();
-                 order.setOrderdate(new Date());
-                 order.setOrderid(order.getOrderid()+1);
-                 order.setTotalprice(order.getTotalprice());
-                 order.setTotalquantity(order.getTotalquantity());
-                 order.setUsername(acc);
-                 
-                 
-                 Orderdetail orderdetail = new Orderdetail();
-                 orderdetail.setOrdered(order);
-                 orderdetail.setOrderid(orderdetail.getOrderid()+1);
-                 orderdetail.setProductcode(cart.getProduct());
-                
-                 
-                
-            }
+        for (LineItem productLineItems : cart.getLineItems()) {
+            
+            orderDetail.set(historyOrder);
+            orderDetail.setOrderid(orderDetailId);
+            orderDetail.setProductcode(productLineItems.getProduct());
+            orderDetail.setProductprice((int) productLineItems.getSalePrice());
+            orderDetail.setProductquantity(productLineItems.getQuantity());
+            
+            
         }
-        
-        session.setAttribute("message", "Order");
-        getServletContext().getRequestDispatcher("/History.jsp").forward(request, response);
-        
-     }
+
+        for (Historyorder order : orderList) {
+            orderAccount.add(order);
+        }
+
+        accountObj.setHistoryorderList(orderAccount);
+        //*--- End of Order ---*
+
+        try {
+            accountJpaCtrl.edit(accountObj);
+            historyOrderJpaCtrl.create(historyOrder);
+            historyOrderDetailJpaCtrl.create(orderDetail);
+        } catch (RollbackFailureException ex) {
+            Logger.getLogger(CheckOutServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(CheckOutServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        accountObj.setHistoryorderList(orderAccount);
+
+        for (LineItem productLineItems : cart.getLineItems()) {
+            cart.remove(productLineItems.getProduct());
+        }
+
+        getServletContext().getRequestDispatcher("/Thanks.jsp").forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

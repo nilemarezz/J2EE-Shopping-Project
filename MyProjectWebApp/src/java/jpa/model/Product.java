@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Product implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productcode")
-    private List<Orderdetail> orderdetailList;
+    private List<Historyorderdetail> historyorderdetailList;
+
+   
 
    
 
@@ -198,13 +200,15 @@ public class Product implements Serializable {
     }
 
     @XmlTransient
-    public List<Orderdetail> getOrderdetailList() {
-        return orderdetailList;
+    public List<Historyorderdetail> getHistoryorderdetailList() {
+        return historyorderdetailList;
     }
 
-    public void setOrderdetailList(List<Orderdetail> orderdetailList) {
-        this.orderdetailList = orderdetailList;
+    public void setHistoryorderdetailList(List<Historyorderdetail> historyorderdetailList) {
+        this.historyorderdetailList = historyorderdetailList;
     }
+
+    
 
     
 
