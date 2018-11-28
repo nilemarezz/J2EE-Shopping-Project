@@ -164,22 +164,22 @@ insert  into product(productCode,productName,productLine,productDescription,prod
 ('FH06-19','No-Bake Desserts','Food and Health','Delicious Homemade Treats Made Easy, Fast and Over-free','Pantira Rattanadilok Na Phuket','Seangdad Publishing',20,332.50);
 
 
-CREATE TABLE Ordered (
-orderid int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-username varchar(30) not null,
-orderdate Date not null,
-totalPrice decimal(8,2) not null,
-totalQuantity int not null,
-PRIMARY KEY (orderid),
-CONSTRAINT username_Ordered FOREIGN KEY (username) REFERENCES Account (username) ON DELETE NO ACTION ON UPDATE NO ACTION
-); 
+CREATE TABLE HISTORYORDER(
+OrderID INT NOT NULL PRIMARY KEY,
+USERNAME VARCHAR(30) NOT NULL,
+TIMEDATE DATE NOT NULL,
+METHOD VARCHAR(20) NOT NULL,
+AMOUNT INT NOT NULL,
+PRICE DECIMAL NOT NULL,
+CONSTRAINT FK_accountUSERNAME_historyOrder FOREIGN KEY (USERNAME) REFERENCES account (USERNAME) ON DELETE NO ACTION ON UPDATE NO ACTION);
 
-CREATE TABLE Orderdetail (
-orderdetailid int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) primary key,
-orderid int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-productcode varchar(15) not null,
-productquantity  int not null,
-productprice decimal(8,2) not null,
-CONSTRAINT productcode_Orderdetail FOREIGN KEY (productcode) REFERENCES Product (productcode) ON DELETE NO ACTION ON UPDATE NO ACTION,
-CONSTRAINT orderid_Orderdetail FOREIGN KEY (orderid) REFERENCES Ordered (orderid) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+--6.) Create table HISTORYORDERDETAIL
+
+CREATE TABLE HISTORYORDERDetail (
+OrderDetailId int not null primary key,
+OrderID INT NOT NULL ,
+productCode VARCHAR(10) NOT NULL,
+productQuantity int not null,
+productPrice decimal not null,
+CONSTRAINT FK_productCode_historyOrderDetail FOREIGN KEY (productCode) REFERENCES Product (ProductCode) ON DELETE NO ACTION ON UPDATE NO ACTION,
+CONSTRAINT FK_orderId_historyOrderDetail FOREIGN KEY (orderId) REFERENCES historyOrder (orderId) ON DELETE NO ACTION ON UPDATE NO ACTION);
