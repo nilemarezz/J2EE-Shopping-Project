@@ -7,6 +7,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -41,7 +42,15 @@ public class ShowOrderServlet extends HttpServlet {
             return;
         }
         List<Historyorder> order = accountObj.getHistoryorderList();
+        List<Historyorder> order_new = new ArrayList<>();
+        for (Historyorder historyorder : order) {
+            if(historyorder.getUsername().equals(accountObj.getUsername())){
+                order_new.add(historyorder);
+            }
+            
+        }
         session.setAttribute("order" , order);
+        System.out.println(order);
         getServletContext().getRequestDispatcher("/Historyview.jsp").forward(request, response);
     }
     
