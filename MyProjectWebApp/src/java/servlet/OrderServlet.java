@@ -12,11 +12,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.transaction.UserTransaction;
 import jpa.controller.AccountJpaController;
 import jpa.controller.HistoryorderJpaController;
 import jpa.controller.HistoryorderdetailJpaController;
@@ -32,7 +36,10 @@ import model.ShoppingCart;
  * @author Nile
  */
 public class OrderServlet extends HttpServlet {
-
+    @PersistenceUnit(unitName = "WebApplication1PU")
+    EntityManagerFactory emf;
+    @Resource
+    UserTransaction utx;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,9 +51,10 @@ public class OrderServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession session = request.getSession();
-        Account accountObj = (Account) session.getAttribute("account");
+          HttpSession session = request.getSession();
+        Account accountObj = (Account) session.getAttribute("username");
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+        
 
         AccountJpaController accountJpaCtrl = new AccountJpaController(utx, emf);
         HistoryorderJpaController historyOrderJpaCtrl = new HistoryorderJpaController(utx, emf);
@@ -59,52 +67,67 @@ public class OrderServlet extends HttpServlet {
         historyOrder.setUsername(accountObj);
         historyOrder.setMethod("Debit Card");
         historyOrder.setOrderid(orderId);
-        historyOrder.setPrice((int) cart.getTotalPrice());
+        int carttotal = cart.getTotalPrice().intValue();
+        
+        historyOrder.setPrice(carttotal);
         historyOrder.setAmount(cart.getTotalQuantity());
         historyOrder.setTimedate(new Date());
 
         List<Historyorder> orderList = historyOrderJpaCtrl.findHistoryorderEntities();
         List<Historyorder> orderAccount = new ArrayList<>();
 
-        List<Historyorderdetail> orderProductDetail = new ArrayList<>();
-
-        int orderDetailId = historyOrderDetailJpaCtrl.getHistoryorderdetailCount() + 1;
-        Historyorderdetail orderDetail = new Historyorderdetail();
-        
-        for (LineItem productLineItems : cart.getLineItems()) {
-            
-            orderDetail.set(historyOrder);
-            orderDetail.setOrderid(orderDetailId);
-            orderDetail.setProductcode(productLineItems.getProduct());
-            orderDetail.setProductprice((int) productLineItems.getSalePrice());
-            orderDetail.setProductquantity(productLineItems.getQuantity());
-            
-            
-        }
-
         for (Historyorder order : orderList) {
             orderAccount.add(order);
         }
 
         accountObj.setHistoryorderList(orderAccount);
-        //*--- End of Order ---*
 
         try {
             accountJpaCtrl.edit(accountObj);
             historyOrderJpaCtrl.create(historyOrder);
-            historyOrderDetailJpaCtrl.create(orderDetail);
         } catch (RollbackFailureException ex) {
-            Logger.getLogger(CheckOutServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(CheckOutServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        accountObj.setHistoryorderList(orderAccount);
+        //*--- End of Order ---*
+
+        //*--- Start of OrderDetail ---*
+        List<Historyorderdetail> orderProductDetail = new ArrayList<>();
+
+        for (LineItem productLineItems : cart.getLineItems()) {
+            int orderDetailId = historyOrderDetailJpaCtrl.getHistoryorderdetailCount() + 1;
+            System.out.println(orderDetailId);
+            Historyorderdetail orderDetail = new Historyorderdetail();
+
+            orderDetail.setOrderdetailid(orderDetailId);
+            orderDetail.setOrderid(historyOrder);
+            orderDetail.setProductcode(productLineItems.getProduct());
+
+            int price = (int) productLineItems.getSalePrice().intValue() * productLineItems.getQuantity();
+            System.out.println(price);
+
+            orderDetail.setProductprice(price);
+            orderDetail.setProductquantity(productLineItems.getQuantity());
+
+            orderProductDetail.add(orderDetail);
+            historyOrder.setHistoryorderdetailList(orderProductDetail);
+
+            try {
+                historyOrderDetailJpaCtrl.create(orderDetail);
+            } catch (RollbackFailureException ex) {
+                Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        //*--- End of OrderDetail ---*
 
         for (LineItem productLineItems : cart.getLineItems()) {
             cart.remove(productLineItems.getProduct());
         }
 
-        getServletContext().getRequestDispatcher("/Thanks.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/PaymentComplete.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

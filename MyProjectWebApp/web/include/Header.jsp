@@ -69,7 +69,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="Profile.jsp">Profile</a>
-                        <a class="dropdown-item" href="Order">History</a>
+                        <a class="dropdown-item" href="ShowOrder">History</a>
                         <a class="dropdown-item" href="Logout">Logout</a>
 
                     </div>

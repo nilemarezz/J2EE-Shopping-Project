@@ -255,7 +255,6 @@ public class ProductJpaController implements Serializable {
             em.close();
         }
     }
-    
     public List <Product> findByProductName(String ProductName){
         EntityManager em = getEntityManager();
         try{
