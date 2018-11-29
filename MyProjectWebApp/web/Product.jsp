@@ -20,9 +20,9 @@
         <form action="SearchPrice" method="get">
             <table style="float: right;width: 20%;height: 2%;margin-right: 40%;padding: 20px;">
                 <tr>
-                    <td><input type="number" class="form-control" id="exampleInputPassword1" placeholder="MinPrice" name="min" required></td>
+                    <td><input type="number" class="form-control" id="exampleInputPassword1" placeholder="Min" name="min" required></td>
                     <td>~</td>
-                    <td><input type="number" class="form-control" id="exampleInputPassword1" placeholder="MaxPrice" name="max" required></td>
+                    <td><input type="number" class="form-control" id="exampleInputPassword1" placeholder="Max" name="max" required></td>
                     <td><input  type="submit" class="btn btn-success" value="Search"></td>
                 </tr>
             </table>
@@ -43,11 +43,20 @@
                         <td ><a href="GetProduct?productCode=${p.productcode}" style="font-size: 20px;">${p.productname}</a><br>
                             <p style="font-weight: bold">Categories: ${p.productline.productline}</p> 
                             <p>${p.productdescription}</p></td><td>
-                            <img src = "pic/buy.png" width="30">${p.productprice} ฿
-                            <br>
-                            <br><a href="AddItemToCart?productCode=${p.productcode}" width ="120" >
-                                <input type = button class="btn btn-success" value="Add to cart" width="120"/>
-                            </a> </td></tr>
+                            <img src = "pic/buy.png" width="30">${p.productprice}฿
+                            
+                        <td>
+                            <c:choose>
+                                <c:when test ="${p.quantityinstock != 0}">
+                                    <br><a href="AddItemToCart?productCode=${p.productcode}" width ="120" >
+                                        <input type = button class="btn btn-success" value="Add to cart" width="120"/>
+                                    </a> </c:when>
+                                <c:otherwise>
+                                    <br><a href="AddItemToCart?productCode=${p.productcode}" width ="120" >
+                                        <input type = button class="btn btn-success" value="Out of stock" width="120" disabled/>
+                                    </a>
+                                </c:otherwise>
+                            </c:choose></td></tr>
                         </c:forEach>          
             </table>
 

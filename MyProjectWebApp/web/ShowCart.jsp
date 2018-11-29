@@ -49,7 +49,7 @@
                                             <p>${p.productdescription}</p></td>
                                         <td>${line.product.quantityinstock}</td>
 
-                                        <td><input class="form-control" type="text" id="quantity" value="${line.quantity}" /></td>
+                                        <td><input class="form-control" type="text" id="quantity"  disabled value="${line.quantity}" /></td>
                                         <td><a href="AddItemToCart?productCode=${line.product.productcode}&url=ShowCart"><button class="btn btn-sm btn-success"style="width: 107%" >+</button></a></td>
                                         <td><a href="MinusItem?productCode=${line.product.productcode}&url=ShowCart&operator=minus"><button class="btn btn-sm btn-success"style="width: 120%" >-</button></a></td>
                                         <td class="text-right" id="price">฿${line.totalPrice}</td>
