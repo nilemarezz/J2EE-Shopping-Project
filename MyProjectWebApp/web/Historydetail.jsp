@@ -16,37 +16,26 @@
     <%@include file="include/Header.jsp" %>
 
     <body style="background-color: #ffffff; font-family: 'Rosario', sans-serif;">
-        <p style="font-size: 50px;margin-top: 8%; margin-left: 7.5%"><kbd>History</kbd></p>
-        <form action="SearchPrice" method="get">
-            
-        </form>
+        <p style="font-size: 50px;margin-top: 8%; margin-left: 7.5%"><kbd>Detail Order: ${order.orderid}</kbd></p>
+        
         <div class="container" style="margin-top: 2%; margin-bottom:5%;">
 
             <table id ="example" class="table" >
                 <thead>
-                <th></th>
-                <th class="success">OrderId</th>
-                <th class="success">Date</th>
-                <th class="success">Method</th>
-                
-                <th class="success">Amount</th>
+                <th class="success">Image</th>
+
+                <th class="success">ProductName</th>
+                <th class="success">Quantity</th>
                 <th class="success">Price</th>
                 </thead>
-                
-                <c:forEach items="${order}" var="p">
+                <c:forEach items="${order.historyorderdetailList}" var="o">
                     <tr>
-                        <th><a href="Orderdetail?orderid=${p.orderid}" width ="120" >
-                                <input type = button class="btn btn-success" value="View Detail" width="120"/>
-                            </a></th>
-                        <th class="success">${p.orderid}</th>
-                        <th class="success">${p.timedate}</th>
-                        <th class="success">${p.method}</th>
-                        <th class="success">${p.amount}</th>
-                        <th class="success">${p.price}</th>
+                        <td><img src = "book/${o.productcode.productcode}.jpg" width="120"></td>
+                        <td>${o.productcode.productname}</td>
+                        <td>${o.productquantity}</td>
+                        <td><img src = "pic/buy.png" width="30">${o.productprice} ฿</td>    
                     </tr>
-                </c:forEach>
-                
-                        
+                </c:forEach>          
             </table>
 
         </div>

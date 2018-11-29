@@ -24,6 +24,7 @@ import javax.transaction.UserTransaction;
 import jpa.controller.AccountJpaController;
 import jpa.controller.HistoryorderJpaController;
 import jpa.controller.HistoryorderdetailJpaController;
+import jpa.controller.ProductJpaController;
 import jpa.controller.exceptions.RollbackFailureException;
 import jpa.model.Account;
 import jpa.model.Historyorder;
@@ -57,6 +58,7 @@ public class OrderServlet extends HttpServlet {
         
 
         AccountJpaController accountJpaCtrl = new AccountJpaController(utx, emf);
+        ProductJpaController productJpaCtrl = new ProductJpaController(utx, emf);
         HistoryorderJpaController historyOrderJpaCtrl = new HistoryorderJpaController(utx, emf);
         HistoryorderdetailJpaController historyOrderDetailJpaCtrl = new HistoryorderdetailJpaController(utx, emf);
 
@@ -97,7 +99,6 @@ public class OrderServlet extends HttpServlet {
 
         for (LineItem productLineItems : cart.getLineItems()) {
             int orderDetailId = historyOrderDetailJpaCtrl.getHistoryorderdetailCount() + 1;
-            System.out.println(orderDetailId);
             Historyorderdetail orderDetail = new Historyorderdetail();
 
             orderDetail.setOrderdetailid(orderDetailId);
@@ -105,15 +106,17 @@ public class OrderServlet extends HttpServlet {
             orderDetail.setProductcode(productLineItems.getProduct());
 
             int price = (int) productLineItems.getSalePrice().intValue() * productLineItems.getQuantity();
-            System.out.println(price);
-
+            
             orderDetail.setProductprice(price);
             orderDetail.setProductquantity(productLineItems.getQuantity());
 
+            productLineItems.getProduct().setQuantityinstock((short) (productLineItems.getProduct().getQuantityinstock() - productLineItems.getQuantity()));
+            System.out.println("----------------------"+(short) (productLineItems.getProduct().getQuantityinstock() - productLineItems.getQuantity())+"--------------------------");
             orderProductDetail.add(orderDetail);
             historyOrder.setHistoryorderdetailList(orderProductDetail);
 
             try {
+                productJpaCtrl.edit(productLineItems.getProduct());
                 historyOrderDetailJpaCtrl.create(orderDetail);
             } catch (RollbackFailureException ex) {
                 Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,7 +129,8 @@ public class OrderServlet extends HttpServlet {
         for (LineItem productLineItems : cart.getLineItems()) {
             cart.remove(productLineItems.getProduct());
         }
-
+        
+        session.setAttribute("username", accountJpaCtrl.findAccount(accountObj.getUsername()));
         getServletContext().getRequestDispatcher("/PaymentComplete.jsp").forward(request, response);
     }
 
