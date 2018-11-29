@@ -54,7 +54,15 @@ public class SearchPriceServlet extends HttpServlet {
 
         BigDecimal minPrice = new BigDecimal(min);
         BigDecimal maxPrice = new BigDecimal(max);
-
+        
+        int minP = Integer.valueOf(min);
+        int maxP = Integer.valueOf(max);
+        
+        if(minP > maxP){
+            getServletContext().getRequestDispatcher("/Product.jsp").forward(request, response);
+            return;
+        }
+        
         List<Product> products = productJpaCtrl.findProductEntities();
         List<Product> productAdd = new ArrayList<>();
 
