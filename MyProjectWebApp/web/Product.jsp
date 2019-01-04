@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>BookMart</title>
     </head>
 
     <%@include file="include/Header.jsp" %>
@@ -53,7 +53,7 @@
                                     </a> </c:when>
                                 <c:otherwise>
                                     <br><a href="AddItemToCart?productCode=${p.productcode}" width ="120" >
-                                        <input type = button class="btn btn-success" value="Out of stock" width="120" disabled/>
+                                        <input type = button class="btn btn-danger" value="Out of stock" width="120" disabled/>
                                     </a>
                                 </c:otherwise>
                             </c:choose></td></tr>

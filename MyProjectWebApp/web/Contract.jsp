@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>BookMart</title>
     </head>
    <%@include file="include/Header.jsp" %>
    <h1 style="margin-top: 7%;margin-left: 45%" >Contact</h1>

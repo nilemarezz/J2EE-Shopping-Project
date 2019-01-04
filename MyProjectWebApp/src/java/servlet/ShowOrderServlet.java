@@ -38,17 +38,11 @@ public class ShowOrderServlet extends HttpServlet {
         Account accountObj = (Account) session.getAttribute("username");
         if (accountObj == null) {
             request.setAttribute("message", "Plase Login.");
-            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
             return;
         }
         List<Historyorder> order = accountObj.getHistoryorderList();
-        List<Historyorder> order_new = new ArrayList<>();
-        for (Historyorder historyorder : order) {
-            if(historyorder.getUsername().equals(accountObj.getUsername())){
-                order_new.add(historyorder);
-            }
-            
-        }
+        
         session.setAttribute("order" , order);
         System.out.println(order);
         getServletContext().getRequestDispatcher("/Historyview.jsp").forward(request, response);

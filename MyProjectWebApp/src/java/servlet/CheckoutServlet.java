@@ -42,8 +42,9 @@ public class CheckoutServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         AccountJpaController accCtrl = new AccountJpaController(utx, emf);
+        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
         
-        if (session.getAttribute("cart") == null) {
+        if (session.getAttribute("cart") == null || cart.getTotalQuantity() == 0) {
             getServletContext().getRequestDispatcher("/ShowCart.jsp").forward(request, response);
             return;
         }
